@@ -3,22 +3,23 @@
   "path": "/offline",
   "sections": [
     {
-      "__resolveType": "website/sections/Rendering/Lazy.tsx",
-      "section": {
-        "__resolveType": "commerce/sections/Seo/SeoPLPV2.tsx",
-        "jsonLD": {
-          "__resolveType": "PLP Loader"
-        }
-      }
-    },
-    {
       "__resolveType": "Header"
     },
     {
-      "__resolveType": "site/sections/Product/ProductShelf.tsx",
-      "title": "Oh no! You are offline!",
-      "products": null,
-      "description": "Maybe take some time to explore"
+      "__resolveType": "website/sections/Rendering/Lazy.tsx",
+      "section": {
+        "__resolveType": "site/sections/Product/ProductShelf.tsx",
+        "products": {
+          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+          "props": {
+            "sort": "price:desc",
+            "fuzzy": "automatic",
+            "query": "jeans",
+            "count": 4
+          }
+        },
+        "title": "Ops! Você está offline."
+      }
     },
     {
       "__resolveType": "Footer"

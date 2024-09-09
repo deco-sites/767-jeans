@@ -7,7 +7,11 @@
       "section": {
         "__resolveType": "commerce/sections/Seo/SeoPLPV2.tsx",
         "jsonLD": {
-          "__resolveType": "PLP Loader"
+          "__resolveType": "vtex/loaders/intelligentSearch/productListingPage.ts",
+          "count": 15,
+          "sort": "price:desc",
+          "fuzzy": "automatic",
+          "selectedFacets": []
         }
       }
     },
@@ -22,17 +26,12 @@
       "section": {
         "__resolveType": "site/sections/Product/SearchResult.tsx",
         "page": {
-          "__resolveType": "PLP Loader"
-        },
-        "layout": {
-          "columns": {
-            "mobile": 2,
-            "desktop": 4
-          },
-          "variant": "aside",
-          "pagination": "show-more"
-        },
-        "startingPage": 1
+          "__resolveType": "vtex/loaders/intelligentSearch/productListingPage.ts",
+          "sort": "price:desc",
+          "fuzzy": "automatic",
+          "selectedFacets": [],
+          "count": 15
+        }
       }
     },
     {

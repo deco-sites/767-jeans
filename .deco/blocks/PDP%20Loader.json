@@ -4,7 +4,7 @@
       "param": "slug",
       "__resolveType": "website/functions/requestToParam.ts"
     },
-    "__resolveType": "vtex/loaders/ProductDetailsPage.ts",
+    "__resolveType": "vtex/loaders/inteliggentSearch/ProductDetailsPage.ts",
     "@type": "ProductDetailsPage",
     "breadcrumbList": {
       "@type": "BreadcrumbList"

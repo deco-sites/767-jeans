@@ -1,10 +1,21 @@
 {
   "data": {
-    "__resolveType": "vtex/loaders/ProductListingPage.ts",
+    "__resolveType": "vtex/loaders/inteliggentSearch/ProductListingPage.ts",
     "count": 12,
     "sort": "price:desc",
-    "fuzzy": "automatic"
+    "fuzzy": "automatic",
+    "selectedFacets": [],
+    "@type": "ProductListingPage",
+    "breadcrumb": {
+      "@type": "BreadcrumbList"
+    },
+    "filters": [],
+    "products": [],
+    "pageInfo": {
+      "pageTypes": []
+    },
+    "sortOptions": []
   },
   "extensions": [],
-  "__resolveType": "commerce/loaders/product/extensions/listingPage.ts"
+  "__resolveType": ""
 }
