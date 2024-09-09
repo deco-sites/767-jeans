@@ -6,12 +6,11 @@
   },
   "sections": [
     {
-      "__resolveType": "commerce/sections/Seo/SeoPDPV2.tsx",
-      "jsonLD": {
-        "__resolveType": "vtex/loaders/intelligentSearch/productDetailsPage.ts",
-        "slug": {
-          "__resolveType": "website/functions/requestToParam.ts",
-          "param": "slug"
+      "__resolveType": "website/sections/Rendering/Lazy.tsx",
+      "section": {
+        "__resolveType": "commerce/sections/Seo/SeoPDPV2.tsx",
+        "jsonLD": {
+          "__resolveType": "PDP Loader"
         }
       }
     },
@@ -26,11 +25,7 @@
       "section": {
         "__resolveType": "site/sections/Product/ProductDetails.tsx",
         "page": {
-          "__resolveType": "vtex/loaders/intelligentSearch/productDetailsPage.ts",
-          "slug": {
-            "__resolveType": "website/functions/requestToParam.ts",
-            "param": "slug"
-          }
+          "__resolveType": "PDP Loader"
         }
       }
     },
