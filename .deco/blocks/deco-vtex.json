@@ -1,0 +1,10 @@
+{
+  "__resolveType": "site/apps/deco/vtex.ts",
+  "salesChannel": "1",
+  "defaultSegment": {
+    "channelPrivacy": "public"
+  },
+  "platform": "vtex",
+  "account": "tfbsk9",
+  "publicUrl": "https://www.767jeans.com.br/"
+}
