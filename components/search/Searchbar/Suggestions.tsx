@@ -99,7 +99,7 @@ function Suggestions(
                 <ProductCard
                   product={product}
                   index={index}
-                  itemListName="Suggeestions"
+                  itemListName="Suggestions"
                 />
               </Slider.Item>
             ))}

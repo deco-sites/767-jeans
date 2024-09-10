@@ -70,8 +70,8 @@ function Footer({
                     src={image}
                     alt={alt}
                     loading="lazy"
-                    width={24}
-                    height={24}
+                    width={40}
+                    height={40}
                   />
                 </a>
               </li>
@@ -95,17 +95,19 @@ function Footer({
         <hr class="w-full text-base-400" />
 
         <div class="grid grid-flow-row sm:grid-flow-col gap-8">
-          <ul class="flex flex-col sm:flex-row gap-2 sm:gap-4 sm:items-center">
-            {policies.map(({ title, href }) => (
-              <li>
-                <a class="text-xs font-medium" href={href}>
-                  {title}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {policies && policies.length > 0 && (
+            <ul class="flex flex-col sm:flex-row gap-2 sm:gap-4 sm:items-center">
+              {policies.map(({ title, href }) => (
+                <li>
+                  <a class="text-xs font-medium" href={href}>
+                    {title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
 
-          <div class="flex flex-nowrap items-center justify-between sm:justify-center gap-4">
+          <div class="flex flex-nowrap items-center justify-between sm:justify-start gap-4">
             <div>
               <img loading="lazy" src={logo} />
             </div>

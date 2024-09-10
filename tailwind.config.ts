@@ -10,6 +10,9 @@ export default {
       animation: {
         sliding: "sliding 30s linear infinite",
       },
+      maxWidth: {
+        site: "78.5rem",
+      },
       fontFamily: {
         "futura": ["FuturaPT", "sans-serif"],
       },

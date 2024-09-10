@@ -41,7 +41,7 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
                 loading="lazy"
               />
             )}
-            <ul class="flex items-start justify-start gap-6 container">
+            <ul class="flex items-start justify-start gap-6 container max-w-site">
               {children.map((node) => (
                 <li class="p-6 pl-0">
                   <a class="hover:underline" href={node.url}>

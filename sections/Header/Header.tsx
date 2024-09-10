@@ -75,7 +75,7 @@ const Desktop = (
       </div>
     </Modal>
 
-    <div class="flex flex-col gap-4 pt-5 container border-b border-gray-300">
+    <div class="flex flex-col gap-4 pt-5 container max-w-site">
       <div class="grid grid-cols-3 place-items-center">
         <div class="place-self-start">
           <a href="/" aria-label="Store logo">
@@ -90,12 +90,12 @@ const Desktop = (
 
         <label
           for={SEARCHBAR_POPUP_ID}
-          class="input input-bordered flex items-center gap-2 w-full"
+          class="input input-bordered rounded-none flex items-center gap-2 w-full"
           aria-label="search icon button"
         >
           <Icon id="search" />
           <span class="text-base-400 truncate">
-            Search products, brands...
+            {searchbar.placeholder}
           </span>
         </label>
 
@@ -187,14 +187,17 @@ const Mobile = (
         </a>
       )}
 
-      <label
-        for={SEARCHBAR_DRAWER_ID}
-        class="btn btn-square btn-sm btn-ghost"
-        aria-label="search icon button"
-      >
-        <Icon id="search" />
-      </label>
-      <Bag />
+      <div class="flex items-center justify-end">
+        <label
+          for={SEARCHBAR_DRAWER_ID}
+          class="btn btn-square btn-sm btn-ghost"
+          aria-label="search icon button"
+        >
+          <Icon id="search" />
+        </label>
+
+        <Bag />
+      </div>
     </div>
   </>
 );
