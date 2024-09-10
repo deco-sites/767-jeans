@@ -254,10 +254,47 @@
       "preload": true
     },
     {
+      "__resolveType": "site/sections/Content/Benefits.tsx",
+      "benefits": [
+        {
+          "image": {
+            "source": "https://www.modab.com.br/cdn/shop/files/Frete.svg?v=1709075699&width=30",
+            "description": "Truck Image"
+          },
+          "title": "Frete grátis",
+          "subtitle": "Nas compras acima de R$499"
+        },
+        {
+          "image": {
+            "source": "https://www.modab.com.br/cdn/shop/files/Desconto.svg?v=1709075699&width=30",
+            "description": "Offer Image"
+          },
+          "title": "10% Off",
+          "subtitle": "Na primeira compra"
+        },
+        {
+          "image": {
+            "source": "https://www.modab.com.br/cdn/shop/files/Troca.svg?v=1709075699&width=30",
+            "description": "Boxes Image"
+          },
+          "title": "1º troca grátis",
+          "subtitle": "Dentro do prazo de 30 dias"
+        },
+        {
+          "image": {
+            "source": "https://www.modab.com.br/cdn/shop/files/Cashback.svg?v=1709075698&width=30",
+            "description": "Cashback Image"
+          },
+          "title": "Cashback",
+          "subtitle": "Receba 15% de bônus para a próxima compra"
+        }
+      ]
+    },
+    {
       "__resolveType": "website/sections/Rendering/Lazy.tsx",
       "section": {
         "__resolveType": "site/sections/Product/ProductShelf.tsx",
-        "title": "Os Mais Vendidos",
+        "title": "OS MAIS VENDIDOS",
         "products": {
           "props": {
             "sort": "OrderByPriceDESC",

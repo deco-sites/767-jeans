@@ -170,12 +170,12 @@ export default function Cart({
           {count === 0
             ? (
               <div class="flex flex-col gap-6">
-                <span class="font-medium text-2xl">Your bag is empty</span>
+                <span class="font-medium text-xl">Seu carrinho está vazio</span>
                 <label
                   for={MINICART_DRAWER_ID}
                   class="btn btn-outline no-animation"
                 >
-                  Choose products
+                  Escolher produtos
                 </label>
               </div>
             )
