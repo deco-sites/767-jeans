@@ -6,6 +6,7 @@
 
   /* Allow changing font family via CMS */
   html {
+    font-family: FuturaPT;
     font-family: var(--font-family);
   }
 

@@ -10,6 +10,9 @@ export default {
       animation: {
         sliding: "sliding 30s linear infinite",
       },
+      fontFamily: {
+        "futura": ["FuturaPT", "sans-serif"],
+      },
       keyframes: {
         sliding: {
           "0%": { transform: "translateX(0)" },

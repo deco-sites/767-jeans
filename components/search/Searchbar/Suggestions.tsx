@@ -49,7 +49,7 @@ function Suggestions(
   { suggestion }: ComponentProps<typeof loader, typeof action>,
 ) {
   const { products = [], searches = [] } = suggestion ?? {};
-  const hasProducts = Boolean(products.length);
+  const hasProducts = Boolean(products?.length ?? 0);
   const hasTerms = Boolean(searches.length);
 
   return (
@@ -91,7 +91,7 @@ function Suggestions(
             Produtos sugeridos
           </span>
           <Slider class="carousel">
-            {products.map((product, index) => (
+            {products?.map((product, index) => (
               <Slider.Item
                 index={index}
                 class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
