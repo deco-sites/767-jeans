@@ -23,7 +23,7 @@ function ProductSlider({ products, itemListName }: Props) {
         }}
       >
         <div class="col-start-1 col-span-3 row-start-1 row-span-1">
-          <Slider class="carousel carousel-center sm:carousel-end gap-5 sm:gap-10 w-full">
+          <Slider class="carousel carousel-center sm:carousel-end gap-2.5 w-full">
             {products?.map((product, index) => (
               <Slider.Item
                 index={index}
@@ -44,13 +44,13 @@ function ProductSlider({ products, itemListName }: Props) {
           </Slider>
         </div>
 
-        <div class="col-start-1 col-span-1 row-start-1 row-span-1 z-10 self-center p-2 relative bottom-[15%]">
+        <div class="col-start-1 col-span-1 row-start-1 row-span-1 z-10 self-center p-2 relative bottom-[10%]">
           <Slider.PrevButton class="hidden sm:flex disabled:invisible btn btn-outline btn-sm btn-circle no-animation">
             <Icon id="chevron-right" class="rotate-180" />
           </Slider.PrevButton>
         </div>
 
-        <div class="col-start-3 col-span-1 row-start-1 row-span-1 z-10 self-center p-2 relative bottom-[15%]">
+        <div class="col-start-3 col-span-1 row-start-1 row-span-1 z-10 self-center p-2 relative bottom-[10%]">
           <Slider.NextButton class="hidden sm:flex disabled:invisible btn btn-outline btn-sm btn-circle no-animation">
             <Icon id="chevron-right" />
           </Slider.NextButton>

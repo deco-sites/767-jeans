@@ -97,7 +97,7 @@ function PageResult(props: SectionProps<typeof loader>) {
           hx-get={partialPrev}
         >
           <span class="inline [.htmx-request_&]:hidden">
-            Show Less
+            Ver menos
           </span>
           <span class="loading loading-spinner hidden [.htmx-request_&]:block" />
         </a>
@@ -137,7 +137,7 @@ function PageResult(props: SectionProps<typeof loader>) {
                 hx-get={partialNext}
               >
                 <span class="inline [.htmx-request_&]:hidden">
-                  Show More
+                  Ver mais
                 </span>
                 <span class="loading loading-spinner hidden [.htmx-request_&]:block" />
               </a>
@@ -236,7 +236,9 @@ function Result(props: SectionProps<typeof loader>) {
 
   const results = (
     <span class="text-sm font-normal">
-      {page.pageInfo.recordPerPage} of {page.pageInfo.records} results
+      {page!.pageInfo!.records! > page!.pageInfo!.recordPerPage!
+        ? page.pageInfo.recordPerPage
+        : page.pageInfo.records} de {page.pageInfo.records} resultados
     </span>
   );
 
@@ -279,17 +281,17 @@ function Result(props: SectionProps<typeof loader>) {
                     </div>
 
                     <label class="btn btn-ghost" for={controls}>
-                      Filters
+                      Filtros
                     </label>
                   </div>
                 </Drawer>
               )}
 
-              <div class="grid place-items-center grid-cols-1 sm:grid-cols-[250px_1fr]">
+              <div class="grid place-items-center grid-cols-1 sm:grid-cols-[250px_1fr] gap-4">
                 {device === "desktop" && (
                   <aside class="place-self-start flex flex-col gap-9">
                     <span class="text-base font-semibold h-12 flex items-center">
-                      Filters
+                      Filtros
                     </span>
 
                     <Filters filters={filters} />
@@ -330,7 +332,7 @@ function SearchResult({
   page,
   ...props
 }: SectionProps<typeof loader>) {
-  if (!page) {
+  if (!page || !page.products || page.products.length === 0) {
     return <NotFound />;
   }
 

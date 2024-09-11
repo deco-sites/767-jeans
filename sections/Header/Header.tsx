@@ -13,6 +13,8 @@ import Searchbar, {
 import Drawer from "../../components/ui/Drawer.tsx";
 import Icon from "../../components/ui/Icon.tsx";
 import Modal from "../../components/ui/Modal.tsx";
+import Login from "../../components/header/Login.tsx";
+import Favorite from "../../components/header/Favorite.tsx";
 import {
   HEADER_HEIGHT_DESKTOP,
   HEADER_HEIGHT_MOBILE,
@@ -99,7 +101,9 @@ const Desktop = (
           </span>
         </label>
 
-        <div class="flex gap-4 place-self-end">
+        <div class="flex items-center gap-2 place-self-end">
+          <Login />
+          <Favorite />
           <Bag />
         </div>
       </div>
@@ -108,9 +112,6 @@ const Desktop = (
         <ul class="flex">
           {navItems?.slice(0, 10).map((item) => <NavItem item={item} />)}
         </ul>
-        <div>
-          {/* ship to */}
-        </div>
       </div>
     </div>
   </>
@@ -156,20 +157,28 @@ const Mobile = (
     />
 
     <div
-      class="grid place-items-center w-screen px-5 gap-4"
+      class="flex items-center justify-between w-full px-5 gap-4"
       style={{
         height: NAVBAR_HEIGHT_MOBILE,
-        gridTemplateColumns:
-          "min-content auto min-content min-content min-content",
       }}
     >
-      <label
-        for={SIDEMENU_DRAWER_ID}
-        class="btn btn-square btn-sm btn-ghost"
-        aria-label="open menu"
-      >
-        <Icon id="menu" />
-      </label>
+      <div class="flex items-center gap-2 justify-start">
+        <label
+          for={SIDEMENU_DRAWER_ID}
+          class="btn btn-square btn-sm btn-ghost"
+          aria-label="open menu"
+        >
+          <Icon id="menu" />
+        </label>
+
+        <label
+          for={SEARCHBAR_DRAWER_ID}
+          class="btn btn-square btn-sm btn-ghost"
+          aria-label="search icon button"
+        >
+          <Icon id="search" />
+        </label>
+      </div>
 
       {logo && (
         <a
@@ -187,15 +196,8 @@ const Mobile = (
         </a>
       )}
 
-      <div class="flex items-center justify-end">
-        <label
-          for={SEARCHBAR_DRAWER_ID}
-          class="btn btn-square btn-sm btn-ghost"
-          aria-label="search icon button"
-        >
-          <Icon id="search" />
-        </label>
-
+      <div class="flex items-center gap-2 justify-end">
+        <Login />
         <Bag />
       </div>
     </div>

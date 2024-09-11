@@ -1,7 +1,7 @@
 import { useScript } from "deco/hooks/useScript.ts";
 import { MINICART_DRAWER_ID } from "../../constants.ts";
 import { useId } from "../../sdk/useId.ts";
-import Icon from "../ui/Icon.tsx";
+import { asset } from "$fresh/runtime.ts";
 
 const onLoad = (id: string) =>
   window.STOREFRONT.CART.subscribe((sdk) => {
@@ -38,7 +38,13 @@ function Bag() {
         />
 
         <span class="btn btn-square btn-sm btn-ghost no-animation">
-          <Icon id="shopping_bag" />
+          <img
+            id="shopping_bag"
+            src={asset("/image/bag.webp")}
+            alt="Shopping Bag Icon"
+            width={24}
+            height={24}
+          />
         </span>
       </label>
       <script
