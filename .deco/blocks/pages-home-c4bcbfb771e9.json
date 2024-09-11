@@ -98,10 +98,14 @@
         "__resolveType": "site/sections/Images/Banner.tsx",
         "images": {
           "mobile": {
-            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/39d35242-6c1c-4fcc-9efa-4d07948749fc/7cab0719-5ba4-4b13-a5ae-c77a19af04d5___84aceeb0c051699bf38396bd97c6cf07.webp"
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/39d35242-6c1c-4fcc-9efa-4d07948749fc/7cab0719-5ba4-4b13-a5ae-c77a19af04d5___84aceeb0c051699bf38396bd97c6cf07.webp",
+            "width": 1500,
+            "height": 1500
           },
           "desktop": {
-            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/33a0e421-776f-482d-bc40-179a4719fa98/a9d6e639-de76-4c57-b09e-5f933619397d___6ead7aade3304a2797b58254acdf70a0.webp"
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/33a0e421-776f-482d-bc40-179a4719fa98/a9d6e639-de76-4c57-b09e-5f933619397d___6ead7aade3304a2797b58254acdf70a0.webp",
+            "width": 1599,
+            "height": 722
           }
         },
         "href": "#"
@@ -125,21 +129,7 @@
     {
       "__resolveType": "website/sections/Rendering/Lazy.tsx",
       "section": {
-        "__resolveType": "site/sections/Newsletter/Newsletter.tsx",
-        "label": "Sign up",
-        "placeholder": "Email address",
-        "empty": {
-          "title": "Get top deals, latest trends, and more.",
-          "description": "Receive our news and promotions in advance. Enjoy and get 10% off your first purchase. For more information click here."
-        },
-        "success": {
-          "title": "Thank you for subscribing!",
-          "description": "You’re now signed up to receive the latest news, trends, and exclusive promotions directly to your inbox. Stay tuned!"
-        },
-        "failed": {
-          "title": "Oops!. Something went wrong!",
-          "description": "Something went wrong. Please try again. If the problem persists, please contact us."
-        }
+        "__resolveType": "Newsletter"
       }
     },
     {
