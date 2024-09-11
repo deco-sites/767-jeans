@@ -123,7 +123,9 @@
             "111": "5",
             "112": "b",
             "113": "7",
-            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/00a93a4e-92c8-4ae9-bbc3-bc177d6d3b8e/2b41cb90-e6cf-4f4b-8baf-142b64b337c8___2a96d8f5b09fb946a4402c2f3f6539b2.webp"
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/00a93a4e-92c8-4ae9-bbc3-bc177d6d3b8e/2b41cb90-e6cf-4f4b-8baf-142b64b337c8___2a96d8f5b09fb946a4402c2f3f6539b2.webp",
+            "width": 3000,
+            "height": 1060
           },
           "mobile": {
             "0": "h",
@@ -240,11 +242,13 @@
             "111": "f",
             "112": "0",
             "113": "f",
-            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/ca29e77d-b302-4862-a2a7-231def96e0d9/035503a7-dd81-40a5-becc-3d2c178b9901___9a71979900018af5afd28c7f394d7482.webp"
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/ca29e77d-b302-4862-a2a7-231def96e0d9/035503a7-dd81-40a5-becc-3d2c178b9901___9a71979900018af5afd28c7f394d7482.webp",
+            "width": 640,
+            "height": 870
           },
-          "alt": "Shoes",
+          "alt": "Novidades",
           "action": {
-            "href": "/s?q=shoes&page=0"
+            "href": "/novidade"
           }
         }
       ],
