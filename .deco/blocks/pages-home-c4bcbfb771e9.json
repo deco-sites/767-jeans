@@ -308,12 +308,42 @@
     {
       "__resolveType": "website/sections/Rendering/Lazy.tsx",
       "section": {
+        "__resolveType": "site/sections/Product/ProductShelf.tsx",
+        "title": "Novidades",
+        "products": {
+          "props": {
+            "sort": "OrderByPriceDESC",
+            "term": "jeans",
+            "count": 12
+          },
+          "__resolveType": "vtex/loaders/legacy/productList.ts"
+        }
+      }
+    },
+    {
+      "__resolveType": "website/sections/Rendering/Lazy.tsx",
+      "section": {
         "__resolveType": "site/sections/Images/Banner.tsx",
         "images": {
           "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/33a0e421-776f-482d-bc40-179a4719fa98/a9d6e639-de76-4c57-b09e-5f933619397d___6ead7aade3304a2797b58254acdf70a0.webp",
           "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/39d35242-6c1c-4fcc-9efa-4d07948749fc/7cab0719-5ba4-4b13-a5ae-c77a19af04d5___84aceeb0c051699bf38396bd97c6cf07.webp"
         },
         "href": "#"
+      }
+    },
+    {
+      "__resolveType": "website/sections/Rendering/Lazy.tsx",
+      "section": {
+        "__resolveType": "site/sections/Product/ProductShelf.tsx",
+        "title": "Melhores Ofertas",
+        "products": {
+          "props": {
+            "sort": "OrderByPriceDESC",
+            "term": "jeans",
+            "count": 12
+          },
+          "__resolveType": "vtex/loaders/legacy/productList.ts"
+        }
       }
     },
     {
