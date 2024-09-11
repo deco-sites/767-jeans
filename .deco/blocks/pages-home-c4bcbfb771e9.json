@@ -258,7 +258,7 @@
       "benefits": [
         {
           "image": {
-            "source": "https://www.modab.com.br/cdn/shop/files/Frete.svg?v=1709075699&width=30",
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/9d875780-25c5-42d2-bc4a-98d47a1b28eb/Frete.svg",
             "description": "Truck Image"
           },
           "title": "Frete grátis",
@@ -266,7 +266,7 @@
         },
         {
           "image": {
-            "source": "https://www.modab.com.br/cdn/shop/files/Desconto.svg?v=1709075699&width=30",
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/cc5bb82d-7763-4fde-b959-62e8abd99d2e/Desconto.svg",
             "description": "Offer Image"
           },
           "title": "10% Off",
@@ -274,7 +274,7 @@
         },
         {
           "image": {
-            "source": "https://www.modab.com.br/cdn/shop/files/Troca.svg?v=1709075699&width=30",
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/72bd8061-ae96-4c4e-99ab-5d73f0fbe417/Troca.svg",
             "description": "Boxes Image"
           },
           "title": "1º troca grátis",
@@ -282,7 +282,7 @@
         },
         {
           "image": {
-            "source": "https://www.modab.com.br/cdn/shop/files/Cashback.svg?v=1709075698&width=30",
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/04500098-2a72-4aea-99cd-25e3b296b748/Cashback.svg",
             "description": "Cashback Image"
           },
           "title": "Cashback",
