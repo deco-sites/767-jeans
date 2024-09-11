@@ -8,8 +8,16 @@ export interface Props {
   description?: HTMLWidget;
 
   images: {
-    mobile: ImageWidget;
-    desktop: ImageWidget;
+    mobile: {
+      source: ImageWidget;
+      width?: number;
+      height?: number;
+    };
+    desktop: {
+      source: ImageWidget;
+      width?: number;
+      height?: number;
+    };
   };
 
   href: string;
@@ -26,17 +34,21 @@ function Banner({ title, description, images, href, cta }: Props) {
           <Picture>
             <Source
               media="(max-width: 640px)"
-              src={images.mobile}
-              width={335}
-              height={572}
+              src={images.mobile.source}
+              width={images.mobile.width || 335}
+              height={images.mobile.height || 572}
             />
             <Source
               media="(min-width: 640px)"
-              src={images.desktop}
-              width={1320}
-              height={480}
+              src={images.desktop.source}
+              width={images.desktop.width || 1320}
+              height={images.desktop.height || 480}
             />
-            <img src={images.desktop} alt={title} class="w-full object-cover" />
+            <img
+              src={images.desktop.source}
+              alt={title}
+              class="w-full object-cover"
+            />
           </Picture>
         </a>
 
