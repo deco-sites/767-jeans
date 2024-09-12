@@ -27,6 +27,8 @@ export default function ProductDetails({ page }: Props) {
     );
   }
 
+  console.log(page.product.description);
+
   return (
     <div class="container flex flex-col gap-4 sm:gap-5 w-full py-4 sm:py-5 px-5 xl:px-0 max-w-site">
       <Breadcrumb itemListElement={page.breadcrumbList.itemListElement} />
@@ -44,6 +46,16 @@ export default function ProductDetails({ page }: Props) {
         <div class="sm:col-span-2">
           <ProductInfo page={page} />
         </div>
+      </div>
+
+      <div class="flex flex-col gap-6 mt-4">
+        <h2 class="uppercase font-medium text-xl">Informações do produto</h2>
+        <div
+          class="font-medium"
+          dangerouslySetInnerHTML={{
+            __html: page.product.description?.replace(/\r?\n/g, "<br />") || "",
+          }}
+        />
       </div>
     </div>
   );
