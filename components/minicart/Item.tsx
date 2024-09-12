@@ -5,17 +5,21 @@ import { formatPrice } from "../../sdk/format.ts";
 import Icon from "../ui/Icon.tsx";
 import QuantitySelector from "../ui/QuantitySelector.tsx";
 import { useScript } from "@deco/deco/hooks";
+
 export type Item = AnalyticsItem & {
   listPrice: number;
   image: string;
 };
+
 export interface Props {
   item: Item;
   index: number;
   locale: string;
   currency: string;
 }
+
 const QUANTITY_MAX_VALUE = 100;
+
 const removeItemHandler = () => {
   const itemID = (event?.currentTarget as HTMLButtonElement | null)
     ?.closest("fieldset")
@@ -24,8 +28,9 @@ const removeItemHandler = () => {
     window.STOREFRONT.CART.setQuantity(itemID, 0);
   }
 };
+
 function CartItem({ item, index, locale, currency }: Props) {
-  const { image, listPrice, price = Infinity, quantity } = item;
+  const { image, listPrice, price = Infinity, quantity, item_url } = item;
   const isGift = price < 0.01;
   // deno-lint-ignore no-explicit-any
   const name = (item as any).item_name;
@@ -42,14 +47,15 @@ function CartItem({ item, index, locale, currency }: Props) {
         style={{ aspectRatio: "108 / 150" }}
         width={108}
         height={150}
-        class="h-full object-contain"
+        class="h-full object-cover rounded-lg"
       />
 
       {/* Info */}
       <div class="flex flex-col gap-2">
         {/* Name and Remove button */}
         <div class="flex justify-between items-center">
-          <legend>{name}</legend>
+          <a href={item_url} class="font-medium leading-6">{name}</a>
+
           <button
             class={clx(
               isGift && "hidden",
@@ -84,4 +90,5 @@ function CartItem({ item, index, locale, currency }: Props) {
     </fieldset>
   );
 }
+
 export default CartItem;

@@ -73,10 +73,10 @@ export function ErrorFallback() {
     <div class="flex flex-col flex-grow justify-center items-center overflow-hidden w-full gap-2">
       <div class="flex flex-col gap-1 p-6 justify-center items-center">
         <span class="font-semibold">
-          Error while updating cart
+          Erro ao atualizar carrinho
         </span>
         <span class="text-sm text-center">
-          Click in the button below to retry or refresh the page
+          Clique no botão abaixo para tentar novamente ou atualize a página
         </span>
       </div>
 
@@ -86,7 +86,7 @@ export function ErrorFallback() {
         hx-swap="outerHTML"
         hx-target="closest div"
       >
-        Retry
+        Tentar novamente
       </button>
     </div>
   );
@@ -202,9 +202,9 @@ export default function Cart(
                   <div class="border-t border-base-200 py-2 flex flex-col">
                     {discounts > 0 && (
                       <div class="flex justify-between items-center px-4">
-                        <span class="text-sm">Discounts</span>
+                        <span class="text-sm">Descontos</span>
                         <span class="text-sm">
-                          {formatPrice(discounts, currency, locale)}
+                          -{formatPrice(discounts, currency, locale)}
                         </span>
                       </div>
                     )}
@@ -229,7 +229,7 @@ export default function Cart(
                       </output>
                     </div>
                     <span class="text-sm text-base-300">
-                      Fees and shipping will be calculated at checkout
+                      Taxas e frete serão calculados na finalização da compra
                     </span>
                   </div>
 
@@ -239,8 +239,8 @@ export default function Cart(
                       href={checkoutHref}
                       hx-on:click={useScript(sendBeginCheckoutEvent)}
                     >
-                      <span class="[.htmx-request_&]:hidden">
-                        Begin Checkout
+                      <span class="[.htmx-request_&]:hidden uppercase font-medium">
+                        Finalizar compra
                       </span>
                       <span class="[.htmx-request_&]:inline hidden loading loading-spinner" />
                     </a>
