@@ -27,8 +27,6 @@ export default function ProductDetails({ page }: Props) {
     );
   }
 
-  console.log(page.product.description);
-
   return (
     <div class="container flex flex-col gap-4 sm:gap-5 w-full py-4 sm:py-5 px-5 xl:px-0 max-w-site">
       <Breadcrumb itemListElement={page.breadcrumbList.itemListElement} />
