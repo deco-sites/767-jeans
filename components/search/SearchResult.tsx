@@ -1,8 +1,5 @@
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import { useScript } from "deco/hooks/useScript.ts";
-import { useSection } from "deco/hooks/useSection.ts";
-import { SectionProps } from "deco/mod.ts";
 import ProductCard from "../../components/product/ProductCard.tsx";
 import Filters from "../../components/search/Filters.tsx";
 import Icon from "../../components/ui/Icon.tsx";
@@ -13,8 +10,8 @@ import { useSendEvent } from "../../sdk/useSendEvent.ts";
 import Breadcrumb from "../ui/Breadcrumb.tsx";
 import Drawer from "../ui/Drawer.tsx";
 import Sort from "./Sort.tsx";
-import { useDevice } from "deco/hooks/useDevice.ts";
-
+import { useDevice, useScript, useSection } from "@deco/deco/hooks";
+import { type SectionProps } from "@deco/deco";
 export interface Layout {
   /**
    * @title Pagination
@@ -22,19 +19,15 @@ export interface Layout {
    */
   pagination?: "show-more" | "pagination";
 }
-
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   layout?: Layout;
-
   /** @description 0 for ?page=0 as your first page */
   startingPage?: 0 | 1;
-
   /** @hidden */
   partial?: "hideMore" | "hideLess";
 }
-
 function NotFound() {
   return (
     <div class="w-full flex justify-center items-center py-10">
@@ -45,19 +38,18 @@ function NotFound() {
 
 const useUrlRebased = (overrides: string | undefined, base: string) => {
   let url: string | undefined = undefined;
-
   if (overrides) {
     const temp = new URL(overrides, base);
     const final = new URL(base);
-
     final.pathname = temp.pathname;
-    for (const [key, value] of temp.searchParams.entries()) {
+
+    // Use forEach to handle searchParams
+    temp.searchParams.forEach((value, key) => {
       final.searchParams.set(key, value);
-    }
+    });
 
     url = final.href;
   }
-
   return url;
 };
 
@@ -68,7 +60,6 @@ function PageResult(props: SectionProps<typeof loader>) {
   const perPage = pageInfo?.recordPerPage || products.length;
   const zeroIndexedOffsetPage = pageInfo.currentPage - startingPage;
   const offset = zeroIndexedOffsetPage * perPage;
-
   const nextPageUrl = useUrlRebased(pageInfo.nextPage, url);
   const prevPageUrl = useUrlRebased(pageInfo.previousPage, url);
   const partialPrev = useSection({
@@ -79,9 +70,7 @@ function PageResult(props: SectionProps<typeof loader>) {
     href: nextPageUrl,
     props: { partial: "hideLess" },
   });
-
   const infinite = layout?.pagination !== "pagination";
-
   return (
     <div class="grid grid-flow-row grid-cols-1 place-items-center">
       <div
@@ -172,21 +161,16 @@ function PageResult(props: SectionProps<typeof loader>) {
     </div>
   );
 }
-
 const setPageQuerystring = (page: string, id: string) => {
   const element = document.getElementById(id)?.querySelector(
     "[data-product-list]",
   );
-
   if (!element) {
     return;
   }
-
   new IntersectionObserver((entries) => {
     const url = new URL(location.href);
-
     const prevPage = url.searchParams.get("page");
-
     for (let it = 0; it < entries.length; it++) {
       if (entries[it].isIntersecting) {
         url.searchParams.set("page", page);
@@ -197,23 +181,19 @@ const setPageQuerystring = (page: string, id: string) => {
         url.searchParams.set("page", history.state.prevPage);
       }
     }
-
     history.replaceState({ prevPage }, "", url.href);
   }).observe(element);
 };
-
 function Result(props: SectionProps<typeof loader>) {
   const container = useId();
   const controls = useId();
   const device = useDevice();
-
   const { startingPage = 0, url, partial } = props;
   const page = props.page!;
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo?.recordPerPage || products.length;
   const zeroIndexedOffsetPage = pageInfo.currentPage - startingPage;
   const offset = zeroIndexedOffsetPage * perPage;
-
   const viewItemListEvent = useSendEvent({
     on: "view",
     event: {
@@ -233,7 +213,6 @@ function Result(props: SectionProps<typeof loader>) {
       },
     },
   });
-
   const results = (
     <span class="text-sm font-normal">
       {page!.pageInfo!.records! > page!.pageInfo!.recordPerPage!
@@ -241,11 +220,9 @@ function Result(props: SectionProps<typeof loader>) {
         : page.pageInfo.records} de {page.pageInfo.records} resultados
     </span>
   );
-
   const sortBy = sortOptions.length > 0 && (
     <Sort sortOptions={sortOptions} url={url} />
   );
-
   return (
     <>
       <div id={container} {...viewItemListEvent} class="w-full">
@@ -327,23 +304,16 @@ function Result(props: SectionProps<typeof loader>) {
     </>
   );
 }
-
-function SearchResult({
-  page,
-  ...props
-}: SectionProps<typeof loader>) {
+function SearchResult({ page, ...props }: SectionProps<typeof loader>) {
   if (!page || !page.products || page.products.length === 0) {
     return <NotFound />;
   }
-
   return <Result {...props} page={page} />;
 }
-
 export const loader = (props: Props, req: Request) => {
   return {
     ...props,
     url: req.url,
   };
 };
-
 export default SearchResult;

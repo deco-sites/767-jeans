@@ -3,8 +3,7 @@ import Section from "../../components/ui/Section.tsx";
 import Slider from "../../components/ui/Slider.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
-import { useDevice } from "deco/hooks/useDevice.ts";
-
+import { useDevice } from "@deco/deco/hooks";
 interface Benefit {
   image: {
     source: ImageWidget;
@@ -15,20 +14,18 @@ interface Benefit {
   title: string;
   subtitle: string;
 }
-
 export interface Props {
   /**
    * @maxItems 04
    */
   benefits: Benefit[];
 }
-
 export default function Benefits({ benefits }: Props) {
-  if (!benefits || benefits.length === 0) return null;
-
+  if (!benefits || benefits.length === 0) {
+    return null;
+  }
   const device = useDevice();
   const isDesktop = device === "desktop";
-
   return (
     <Section.Container class="!py-4">
       {!isDesktop
@@ -37,7 +34,6 @@ export default function Benefits({ benefits }: Props) {
     </Section.Container>
   );
 }
-
 function Benefit({ image, title, subtitle }: Benefit) {
   return (
     <div class="flex flex-col sm:flex-row items-center justify-center gap-2 w-full h-full">
@@ -56,7 +52,6 @@ function Benefit({ image, title, subtitle }: Benefit) {
     </div>
   );
 }
-
 function DesktopBenefits({ benefits }: Props) {
   return (
     <ul class="flex items-center justify-between w-full h-full gap-4">
@@ -68,10 +63,8 @@ function DesktopBenefits({ benefits }: Props) {
     </ul>
   );
 }
-
 function SliderBenefits({ benefits }: Props) {
   const id = useId();
-
   return (
     <div id={id}>
       <Slider class="carousel carousel-center w-full gap-2">

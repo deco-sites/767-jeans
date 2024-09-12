@@ -40,8 +40,7 @@ const safeParse = (payload: string | null) => {
   }
 };
 
-// Reconstruct the cart state from the received form data
-const cartFrom = (form: FormData) => {
+const cartFrom = (form: FormData): CartForm => {
   const cart: CartForm = {
     items: [],
     coupon: null,
@@ -50,7 +49,7 @@ const cartFrom = (form: FormData) => {
     addToCart: null,
   };
 
-  for (const [name, value] of form.entries()) {
+  form.forEach((value, name) => {
     if (name === "coupon") {
       cart.coupon = value.toString();
     } else if (name === "action") {
@@ -63,7 +62,7 @@ const cartFrom = (form: FormData) => {
     } else if (name === "add-to-cart") {
       cart.addToCart = safeParse(decodeURIComponent(value.toString()));
     }
-  }
+  });
 
   return cart;
 };

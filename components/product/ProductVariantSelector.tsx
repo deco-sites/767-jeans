@@ -1,14 +1,12 @@
 import type { Product } from "apps/commerce/types.ts";
-import { useSection } from "deco/hooks/useSection.ts";
 import { clx } from "../../sdk/clx.ts";
 import { relative } from "../../sdk/url.ts";
 import { useId } from "../../sdk/useId.ts";
 import { useVariantPossibilities } from "../../sdk/useVariantPossiblities.ts";
-
+import { useSection } from "@deco/deco/hooks";
 interface Props {
   product: Product;
 }
-
 const colors: Record<string, string | undefined> = {
   "White": "white",
   "Black": "black",
@@ -23,7 +21,6 @@ const colors: Record<string, string | undefined> = {
   "DarkYellow": "#c6b343",
   "LightYellow": "#F1E8B0",
 };
-
 const useStyles = (value: string, checked: boolean) => {
   if (colors[value]) {
     return clx(
@@ -34,46 +31,36 @@ const useStyles = (value: string, checked: boolean) => {
       checked ? "ring-primary" : "ring-transparent",
     );
   }
-
   return clx(
     "flex items-center justify-center border border-[#C9CFCF] w-[52px] h-9 rounded-md font-medium",
     checked ? "bg-error text-white" : "hover:border-black",
   );
 };
-
-export const Ring = (
-  { value, checked = false, class: _class }: {
-    value: string;
-    checked?: boolean;
-    class?: string;
-  },
-) => {
+export const Ring = ({ value, checked = false, class: _class }: {
+  value: string;
+  checked?: boolean;
+  class?: string;
+}) => {
   const color = colors[value];
   const styles = clx(useStyles(value, checked), _class);
-
   return (
     <span style={{ backgroundColor: color }} class={styles}>
       {color ? null : value}
     </span>
   );
 };
-
 function VariantSelector({ product }: Props) {
   const { url, isVariantOf } = product;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const possibilities = useVariantPossibilities(hasVariant, product);
   const relativeUrl = relative(url);
   const id = useId();
-
-  const filteredNames = Object.keys(possibilities).filter(
-    (name) =>
-      name.toLowerCase() !== "title" && name.toLowerCase() !== "default title",
+  const filteredNames = Object.keys(possibilities).filter((name) =>
+    name.toLowerCase() !== "title" && name.toLowerCase() !== "default title"
   );
-
   if (filteredNames.length === 0) {
     return null;
   }
-
   return (
     <ul
       class="flex flex-col gap-4"
@@ -83,11 +70,9 @@ function VariantSelector({ product }: Props) {
     >
       {filteredNames.map((name) => {
         const entries = Object.entries(possibilities[name]);
-
         if (entries.length <= 1) {
           return null;
         }
-
         return (
           <li class="flex flex-col gap-2" key={name}>
             <span class="font-medium">{name}</span>
@@ -97,7 +82,6 @@ function VariantSelector({ product }: Props) {
                 .map(([value, link]) => {
                   const relativeLink = relative(link);
                   const checked = relativeLink === relativeUrl;
-
                   return (
                     <li key={value}>
                       <label
@@ -140,5 +124,4 @@ function VariantSelector({ product }: Props) {
     </ul>
   );
 }
-
 export default VariantSelector;
