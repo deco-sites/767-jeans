@@ -3,11 +3,11 @@
   "label": "Sign up",
   "placeholder": "Email address",
   "empty": {
-    "title": "Get top deals, latest trends, and more.",
+    "title": "Receba novidades, prmoções e mais.",
     "description": "Receive our news and promotions in advance. Enjoy and get 10% off your first purchase. For more information click here."
   },
   "success": {
-    "title": "Thank you for subscribing!",
+    "title": "Agradecemos a inscrição!",
     "description": "You’re now signed up to receive the latest news, trends, and exclusive promotions directly to your inbox. Stay tuned!"
   },
   "failed": {
