@@ -128,7 +128,7 @@ function ProductInfo({ page }: Props) {
       )}
 
       {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
+      <div class="mt-4 sm:mt-6 flex flex-col gap-2">
         {availability === "https://schema.org/InStock"
           ? (
             <>
@@ -136,7 +136,7 @@ function ProductInfo({ page }: Props) {
                 item={item}
                 seller={seller}
                 product={product}
-                class="btn btn-primary rounded-md no-animation"
+                class="btn btn-primary rounded-md no-animation min-h-[60px] max-h-[60px] font-medium text-sm"
                 disabled={false}
               />
               {/* <WishlistButton item={item} /> */}

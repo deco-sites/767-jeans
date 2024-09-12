@@ -53,10 +53,8 @@ export default function Results({ result }: ComponentProps<typeof action>) {
       {methods.map((method) => (
         <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
           <span class="text-button text-center">
-            Entrega {method.name}
-          </span>
-          <span class="text-button">
-            até {formatShippingEstimate(method.shippingEstimate)}
+            Entrega {method.name} - até{" "}
+            {formatShippingEstimate(method.shippingEstimate)}
           </span>
           <span class="text-base font-semibold text-right">
             {method.price === 0 ? "Grátis" : (

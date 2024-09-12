@@ -34,7 +34,7 @@ function Bag() {
       >
         <span
           id={id}
-          class="hidden indicator-item badge badge-primary badge-sm font-thin"
+          class="hidden indicator-item badge badge-error badge-sm font-thin"
         />
 
         <span class="btn btn-square btn-sm btn-ghost no-animation">
