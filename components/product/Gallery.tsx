@@ -1,7 +1,5 @@
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
-import ProductImageZoom from "./ProductImageZoom.tsx";
-import Icon from "../ui/Icon.tsx";
 import Slider from "../ui/Slider.tsx";
 import { clx } from "../../sdk/clx.ts";
 import { useId } from "../../sdk/useId.ts";
@@ -11,8 +9,8 @@ export interface Props {
   page: ProductDetailsPage | null;
 }
 
-const WIDTH = 820;
-const HEIGHT = 615;
+const WIDTH = 1812;
+const HEIGHT = 2649;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 /**
@@ -23,7 +21,6 @@ const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
  */
 export default function GallerySlider(props: Props) {
   const id = useId();
-  const zoomId = `${id}-zoom`;
 
   if (!props.page) {
     throw new Error("Missing Product Details Page Info");
@@ -43,7 +40,7 @@ export default function GallerySlider(props: Props) {
     <>
       <div
         id={id}
-        class="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-[min-content_1fr] gap-5"
+        class="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-[min-content_1fr] gap-1 sm:gap-5"
       >
         {/* Image Slider */}
         <div class="col-start-1 col-span-1 sm:col-start-2">
@@ -59,7 +56,7 @@ export default function GallerySlider(props: Props) {
                     sizes="(max-width: 640px) 100vw, 40vw"
                     style={{ aspectRatio: ASPECT_RATIO }}
                     src={img.url!}
-                    alt={img.alternateName}
+                    alt={img.alternateName ?? "Product Image"}
                     width={WIDTH}
                     height={HEIGHT}
                     // Preload LCP image for better web vitals
@@ -69,26 +66,6 @@ export default function GallerySlider(props: Props) {
                 </Slider.Item>
               ))}
             </Slider>
-
-            <Slider.PrevButton
-              class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline disabled:invisible"
-              disabled
-            >
-              <Icon id="chevron-right" class="rotate-180" />
-            </Slider.PrevButton>
-
-            <Slider.NextButton
-              class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline disabled:invisible"
-              disabled={images.length < 2}
-            >
-              <Icon id="chevron-right" />
-            </Slider.NextButton>
-
-            <div class="absolute top-2 right-2 bg-base-100 rounded-full">
-              <label class="btn btn-ghost hidden sm:inline-flex" for={zoomId}>
-                <Icon id="pan_zoom" />
-              </label>
-            </div>
           </div>
         </div>
 
@@ -106,13 +83,12 @@ export default function GallerySlider(props: Props) {
             style={{ maxHeight: "600px" }}
           >
             {images.map((img, index) => (
-              <li class="carousel-item w-16 h-16">
+              <li class="carousel-item w-[72px] h-[115px] sm:w-[123px] sm:h-[179px]">
                 <Slider.Dot index={index}>
                   <Image
-                    style={{ aspectRatio: "1 / 1" }}
-                    class="group-disabled:border-base-400 border rounded object-cover w-full h-full"
-                    width={64}
-                    height={64}
+                    class="group-disabled:border-base-400 border w-full h-full aspect-auto"
+                    width={123}
+                    height={179}
                     src={img.url!}
                     alt={img.alternateName}
                   />
@@ -124,12 +100,6 @@ export default function GallerySlider(props: Props) {
 
         <Slider.JS rootId={id} />
       </div>
-      <ProductImageZoom
-        id={zoomId}
-        images={images}
-        width={700}
-        height={Math.trunc(700 * HEIGHT / WIDTH)}
-      />
     </>
   );
 }

@@ -1,12 +1,11 @@
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import { clx } from "../../sdk/clx.ts";
 import { formatPrice } from "../../sdk/format.ts";
 import { useId } from "../../sdk/useId.ts";
 import { useOffer } from "../../sdk/useOffer.ts";
 import { useSendEvent } from "../../sdk/useSendEvent.ts";
 import ShippingSimulationForm from "../shipping/Form.tsx";
-import WishlistButton from "../wishlist/WishlistButton.tsx";
+// import WishlistButton from "../wishlist/WishlistButton.tsx";
 import AddToCartButton from "./AddToCartButton.tsx";
 import OutOfStock from "./OutOfStock.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
@@ -23,8 +22,7 @@ function ProductInfo({ page }: Props) {
   }
 
   const { breadcrumbList, product } = page;
-  const { productID, offers, isVariantOf } = product;
-  const description = product.description || isVariantOf?.description;
+  const { productID, offers, isVariantOf, additionalProperty = [] } = product;
   const title = isVariantOf?.name ?? product.name;
 
   const {
@@ -32,11 +30,8 @@ function ProductInfo({ page }: Props) {
     listPrice,
     seller = "1",
     availability,
+    installments,
   } = useOffer(offers);
-
-  const percent = listPrice && price
-    ? Math.round(((listPrice - price) / listPrice) * 100)
-    : 0;
 
   const breadcrumb = {
     ...breadcrumbList,
@@ -63,6 +58,20 @@ function ProductInfo({ page }: Props) {
     },
   });
 
+  const discountOnPix = offers?.offers?.[0]?.teasers?.find((teaser) =>
+    teaser.name.includes("DESCONTO NO PIX")
+  )?.effects?.parameters?.[0]?.value;
+  const pixPrice = discountOnPix
+    ? (price - ((Number(discountOnPix) / 100) * price))
+    : null;
+  const roundedPixPrice = (pixPrice && Math.floor(pixPrice * 100) / 100) ??
+    null;
+  const formattedPixPrice = roundedPixPrice?.toFixed(2) ?? null;
+
+  const hasProgressiveDiscount = additionalProperty.find((item) =>
+    item.value === "Desconto Progressivo"
+  );
+
   //Checks if the variant name is "title"/"default title" and if so, the SKU Selector div doesn't render
   const hasValidVariants = isVariantOf?.hasVariant?.some(
     (variant) =>
@@ -73,34 +82,47 @@ function ProductInfo({ page }: Props) {
   return (
     <div {...viewItemEvent} class="flex flex-col" id={id}>
       {/* Price tag */}
-      <span
-        class={clx(
-          "text-sm/4 font-normal text-black bg-primary bg-opacity-15 text-center rounded-badge px-2 py-1",
-          percent < 1 && "opacity-0",
-          "w-fit",
-        )}
-      >
-        {percent} % off
-      </span>
+      {hasProgressiveDiscount && (
+        <span class="text-xs/4 text-black bg-[#ececec] uppercase font-bold text-center rounded-badge px-4 py-1 mt-4 xl:mt-0 mb-4 w-fit">
+          Desconto Progressivo
+        </span>
+      )}
 
       {/* Product Name */}
-      <span class={clx("text-3xl font-semibold", "pt-4")}>
+      <span class="text-2xl leading-7 font-medium">
         {title}
       </span>
 
       {/* Prices */}
-      <div class="flex gap-3 pt-1">
-        <span class="text-3xl font-semibold text-base-400">
-          {formatPrice(price, offers?.priceCurrency)}
-        </span>
-        <span class="line-through text-sm font-medium text-gray-400">
-          {formatPrice(listPrice, offers?.priceCurrency)}
-        </span>
+      <div class="flex flex-col gap-0 pt-4">
+        <div class="flex items-center gap-3 pt-1">
+          <span class="text-lg font-medium text-base-400">
+            {formatPrice(price, offers?.priceCurrency)}
+          </span>
+
+          {(listPrice ?? 0) > price && (
+            <span class="line-through text-sm font-medium text-gray-400">
+              {formatPrice(listPrice, offers?.priceCurrency)}
+            </span>
+          )}
+        </div>
+
+        {formattedPixPrice && (
+          <span class="text-primary text-xl font-medium">
+            R$ {formattedPixPrice.replace(".", ",")} no <b>PIX</b>
+          </span>
+        )}
+
+        {installments && (
+          <span class="text-sm/4 font-normal">
+            ou em até {installments.replace(".", ",")}
+          </span>
+        )}
       </div>
 
       {/* Sku Selector */}
       {hasValidVariants && (
-        <div className="mt-4 sm:mt-8">
+        <div className="mt-4 sm:mt-6">
           <ProductSelector product={product} />
         </div>
       )}
@@ -114,10 +136,10 @@ function ProductInfo({ page }: Props) {
                 item={item}
                 seller={seller}
                 product={product}
-                class="btn btn-primary no-animation"
+                class="btn btn-primary rounded-md no-animation"
                 disabled={false}
               />
-              <WishlistButton item={item} />
+              {/* <WishlistButton item={item} /> */}
             </>
           )
           : <OutOfStock productID={productID} />}
@@ -128,21 +150,6 @@ function ProductInfo({ page }: Props) {
         <ShippingSimulationForm
           items={[{ id: Number(product.sku), quantity: 1, seller: seller }]}
         />
-      </div>
-
-      {/* Description card */}
-      <div class="mt-4 sm:mt-6">
-        <span class="text-sm">
-          {description && (
-            <details>
-              <summary class="cursor-pointer">Description</summary>
-              <div
-                class="ml-2 mt-2"
-                dangerouslySetInnerHTML={{ __html: description }}
-              />
-            </details>
-          )}
-        </span>
       </div>
     </div>
   );

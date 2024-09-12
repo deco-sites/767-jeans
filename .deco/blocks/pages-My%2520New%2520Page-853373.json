@@ -1,18 +1,15 @@
 {
   "name": "Product Page",
   "path": "/:slug/p",
-  "default": {
-    "possiblePaths": []
-  },
   "sections": [
+    {
+      "__resolveType": "Header"
+    },
     {
       "__resolveType": "commerce/sections/Seo/SeoPDPV2.tsx",
       "jsonLD": {
         "__resolveType": "PDP Loader"
       }
-    },
-    {
-      "__resolveType": "Header"
     },
     {
       "__resolveType": "website/sections/Rendering/Lazy.tsx",
@@ -30,23 +27,26 @@
         "products": {
           "__resolveType": "vtex/loaders/legacy/relatedProductsLoader.ts",
           "crossSelling": "showtogether",
-          "count": 12,
           "slug": {
             "__resolveType": "website/functions/requestToParam.ts",
             "param": "slug"
           }
-        }
+        },
+        "title": "Produtos Similares"
       }
     },
     {
       "__resolveType": "website/sections/Rendering/Lazy.tsx",
       "section": {
-        "__resolveType": "site/sections/Newsletter/Newsletter.tsx"
+        "__resolveType": "Newsletter"
       }
     },
     {
       "__resolveType": "Footer"
     }
   ],
-  "__resolveType": "website/pages/Page.tsx"
+  "__resolveType": "website/pages/Page.tsx",
+  "seo": {
+    "__resolveType": "website/sections/Seo/SeoV2.tsx"
+  }
 }
