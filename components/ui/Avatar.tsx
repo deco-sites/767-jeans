@@ -10,16 +10,23 @@ interface Props {
 }
 
 const colors: Record<string, Record<string, string>> = {
-  "azul-clara": { backgroundColor: "#87CEFA" },
-  "azul-marinho": { backgroundColor: "#000080" },
-  "branca": { backgroundColor: "#FFFFFF" },
+  "off-white": { backgroundColor: "#e3e0e1" },
+  "lilas": { backgroundColor: "#c8a2c8" },
+  "jeans": { backgroundColor: "#9ab9d8" },
+  "branco": { backgroundColor: "#FFFFFF" },
   "cinza": { backgroundColor: "#808080" },
-  "cinza-escura": { backgroundColor: "#A9A9A9" },
+  "terracota": { backgroundColor: "#e06c60" },
+  "bege": { backgroundColor: "#d1ae97" },
+  "rosa-claro": { backgroundColor: "#db97c3" },
+  "prata": { backgroundColor: "#cccfd6" },
   "laranja": { backgroundColor: "#FFA500" },
   "marrom": { backgroundColor: "#A52A2A" },
-  "preta": { backgroundColor: "#161616" },
-  "verde-clara": { backgroundColor: "#90EE90" },
-  "vermelha": { backgroundColor: "#FF0000" },
+  "preto": { backgroundColor: "#161616" },
+  "verde": { backgroundColor: "#94b69d" },
+  "verde-militar": { backgroundColor: "#514743" },
+  "verde-menta": { backgroundColor: "#19b2ac" },
+  "verde-claro": { backgroundColor: "#9dc6cf" },
+  "vermelho": { backgroundColor: "#FF0000" },
 };
 
 const variants = {
