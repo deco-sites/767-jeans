@@ -17,6 +17,9 @@
         "__resolveType": "site/sections/Product/SearchResult.tsx",
         "page": {
           "__resolveType": "PLP Loader"
+        },
+        "layout": {
+          "pagination": "show-more"
         }
       }
     },
