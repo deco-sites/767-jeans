@@ -32,7 +32,7 @@ const colors: Record<string, Record<string, string>> = {
 const variants = {
   active: "ring-base-content",
   disabled: "line-through",
-  default: "ring-base-400",
+  default: "ring-base-content/50 hover:ring-base-content",
 };
 
 function Avatar({ content, variant = "default" }: Props) {
@@ -42,7 +42,7 @@ function Avatar({ content, variant = "default" }: Props) {
         class={clx(
           "h-6 w-6",
           "rounded-full",
-          "ring-1 ring-offset-2",
+          "ring-1",
           variants[variant],
         )}
         style={colors[content]}

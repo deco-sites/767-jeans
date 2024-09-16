@@ -28,11 +28,13 @@ function ValueItem(
 }
 
 function FilterValues({ key, values }: FilterToggle) {
-  const avatars = key === "tamanho" || key === "cor";
-  const flexDirection = avatars ? "flex-row items-center" : "flex-col";
+  const avatars = false;
+  const flexDirection = avatars
+    ? "flex-wrap flex-row items-center"
+    : "flex-col sm:max-h-[250px] sm:overflow-y-auto sm:scrollbar";
 
   return (
-    <ul class={clx(`flex flex-wrap gap-2`, flexDirection)}>
+    <ul class={clx(`flex gap-2`, flexDirection)}>
       {values.map((item) => {
         const { url, selected, value } = item;
 
@@ -66,13 +68,24 @@ function FilterValues({ key, values }: FilterToggle) {
 
 function Filters({ filters }: Props) {
   return (
-    <ul class="flex flex-col gap-6 p-4 sm:p-0">
+    <ul class="flex flex-col gap-1 p-4 sm:p-0">
       {filters
         .filter(isToggle)
         .map((filter) => (
-          <li class="flex flex-col gap-4">
-            <span>{filter.label}</span>
-            <FilterValues {...filter} />
+          <li class="collapse collapse-arrow rounded-none">
+            <input
+              type="checkbox"
+              class="peer"
+              checked={filter.values.some((item) => item.selected)}
+            />
+
+            <div class="collapse-title px-0">
+              <span>{filter.label}</span>
+            </div>
+
+            <div class="collapse-content px-0">
+              <FilterValues {...filter} />
+            </div>
           </li>
         ))}
     </ul>
