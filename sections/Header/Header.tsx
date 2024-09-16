@@ -11,7 +11,6 @@ import Searchbar, {
 } from "../../components/search/Searchbar/Form.tsx";
 import Drawer from "../../components/ui/Drawer.tsx";
 import Icon from "../../components/ui/Icon.tsx";
-import Modal from "../../components/ui/Modal.tsx";
 import Login from "../../components/header/Login.tsx";
 import Favorite from "../../components/header/Favorite.tsx";
 import {
@@ -19,7 +18,6 @@ import {
   HEADER_HEIGHT_MOBILE,
   NAVBAR_HEIGHT_MOBILE,
   SEARCHBAR_DRAWER_ID,
-  SEARCHBAR_POPUP_ID,
   SIDEMENU_CONTAINER_ID,
   SIDEMENU_DRAWER_ID,
 } from "../../constants.ts";
@@ -49,65 +47,48 @@ export interface SectionProps {
    * @hide true */
   loading?: "eager" | "lazy";
 }
+
 type Props = Omit<SectionProps, "alert">;
+
 const Desktop = ({ navItems, logo, searchbar, loading }: Props) => (
-  <>
-    <Modal id={SEARCHBAR_POPUP_ID}>
-      <div
-        class="absolute top-0 bg-base-100 container"
-        style={{ marginTop: HEADER_HEIGHT_MOBILE }}
-      >
-        {loading === "lazy"
-          ? (
-            <div class="flex justify-center items-center">
-              <span class="loading loading-spinner" />
-            </div>
-          )
-          : <Searchbar {...searchbar} />}
-      </div>
-    </Modal>
-
-    <div class="flex flex-col gap-4 pt-5 px-5 xl:px-0 container max-w-site">
-      <div class="grid grid-cols-3 place-items-center">
-        <div class="place-self-start">
-          <a href="/" aria-label="Store logo">
-            <Image
-              src={logo.src}
-              alt={logo.alt}
-              width={logo.width || 100}
-              height={logo.height || 23}
-            />
-          </a>
-        </div>
-
-        <label
-          for={SEARCHBAR_POPUP_ID}
-          class="input input-bordered rounded-none flex items-center gap-2 w-full"
-          aria-label="search icon button"
-        >
-          <Icon id="search" />
-          <span class="text-base-400 truncate">
-            {searchbar.placeholder}
-          </span>
-        </label>
-
-        <div class="flex items-center gap-2 place-self-end">
-          <Login />
-          <Favorite />
-          <Bag />
-        </div>
+  <div class="flex flex-col gap-4 pt-5 px-5 xl:px-0 container max-w-site">
+    <div class="grid grid-cols-3 place-items-center">
+      <div class="place-self-start">
+        <a href="/" aria-label="Store logo">
+          <Image
+            src={logo.src}
+            alt={logo.alt}
+            width={logo.width || 100}
+            height={logo.height || 23}
+          />
+        </a>
       </div>
 
-      <div class="flex justify-between items-center w-full">
-        <ul class="flex items-center gap-3 w-full">
-          {navItems?.slice(0, 10).map((item, index) => (
-            <NavItem item={item} index={index} />
-          ))}
-        </ul>
+      {loading === "lazy"
+        ? (
+          <div class="flex justify-center items-center">
+            <span class="loading loading-spinner" />
+          </div>
+        )
+        : <Searchbar {...searchbar} />}
+
+      <div class="flex items-center gap-2 place-self-end">
+        <Login />
+        <Favorite />
+        <Bag />
       </div>
     </div>
-  </>
+
+    <div class="flex justify-between items-center w-full">
+      <ul class="flex items-center gap-3 w-full">
+        {navItems?.slice(0, 10).map((item, index) => (
+          <NavItem item={item} index={index} />
+        ))}
+      </ul>
+    </div>
+  </div>
 );
+
 const Mobile = ({ logo, searchbar, navItems, loading }: Props) => (
   <>
     <Drawer
@@ -192,6 +173,7 @@ const Mobile = ({ logo, searchbar, navItems, loading }: Props) => (
     </div>
   </>
 );
+
 function Header({
   alerts = [],
   logo = {
@@ -204,6 +186,7 @@ function Header({
   ...props
 }: Props) {
   const device = useDevice();
+
   return (
     <header
       style={{
@@ -221,8 +204,10 @@ function Header({
     </header>
   );
 }
+
 export const LoadingFallback = (props: LoadingFallbackProps<Props>) => (
   // deno-lint-ignore no-explicit-any
   <Header {...props as any} loading="lazy" />
 );
+
 export default Header;

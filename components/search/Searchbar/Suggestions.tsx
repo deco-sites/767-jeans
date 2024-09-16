@@ -2,11 +2,12 @@ import { Suggestion } from "apps/commerce/types.ts";
 import { Resolved } from "deco/mod.ts";
 import type { AppContext } from "../../../apps/site.ts";
 import { clx } from "../../../sdk/clx.ts";
+import { useOffer } from "../../../sdk/useOffer.ts";
+import { formatPrice } from "../../../sdk/format.ts";
+import { relative } from "../../../sdk/url.ts";
 import { ComponentProps } from "../../../sections/Component.tsx";
-import ProductCard from "../../product/ProductCard.tsx";
-import Icon from "../../ui/Icon.tsx";
-import Slider from "../../ui/Slider.tsx";
-import { ACTION, NAME } from "./Form.tsx";
+import Image from "apps/website/components/Image.tsx";
+import { NAME } from "./Form.tsx";
 
 export interface Props {
   /**
@@ -54,35 +55,13 @@ function Suggestions(
 
   return (
     <div
-      class={clx(`overflow-y-scroll`, !hasProducts && !hasTerms && "hidden")}
+      class={clx(
+        `absolute z-50 bg-white w-full px-5`,
+        !hasProducts && !hasTerms && "hidden",
+      )}
     >
-      <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[150px_1fr]">
-        <div class="flex flex-col gap-6">
-          <span
-            class="font-medium text-xl"
-            role="heading"
-            aria-level={3}
-          >
-            Sugestões
-          </span>
-          <ul class="flex flex-col gap-6">
-            {searches.map(({ term }) => (
-              <li>
-                {/* TODO @gimenes: use name and action from searchbar form */}
-                <a
-                  href={`${ACTION}?${NAME}=${term}`}
-                  class="flex gap-4 items-center"
-                >
-                  <span>
-                    <Icon id="search" />
-                  </span>
-                  <span dangerouslySetInnerHTML={{ __html: term }} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div class="flex flex-col pt-6 md:pt-0 gap-6 overflow-x-hidden">
+      <div class="grid grid-cols-1">
+        <div class="flex flex-col pt-6 gap-2">
           <span
             class="font-medium text-xl"
             role="heading"
@@ -90,20 +69,66 @@ function Suggestions(
           >
             Produtos sugeridos
           </span>
-          <Slider class="carousel">
-            {products?.map((product, index) => (
-              <Slider.Item
-                index={index}
-                class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
-              >
-                <ProductCard
-                  product={product}
-                  index={index}
-                  itemListName="Suggestions"
-                />
-              </Slider.Item>
-            ))}
-          </Slider>
+
+          <ul class="flex flex-col gap-1.5 max-h-[400px] overflow-y-auto scrollbar px-1">
+            {products?.map(
+              ({ url, name, image: images, offers, isVariantOf }) => {
+                const [front] = images ?? [];
+                const title = isVariantOf?.name ?? name;
+                const { listPrice, price, installments } = useOffer(offers);
+                const relativeUrl = relative(url);
+
+                const WIDTH = 100;
+                const HEIGHT = 100;
+
+                return (
+                  <li class="flex justify-between gap-2 first:mt-4 last:mb-4 w-full">
+                    <a
+                      href={relativeUrl}
+                      aria-label="view product"
+                      class="contents"
+                    >
+                      <Image
+                        src={front.url!}
+                        alt={front.alternateName}
+                        width={WIDTH}
+                        height={HEIGHT}
+                        loading="lazy"
+                        decoding="async"
+                        class="min-w-[100px] max-w-[100px] h-[150px]"
+                      />
+                    </a>
+
+                    <a href={relativeUrl}>
+                      <span class="font-medium">
+                        {title}
+                      </span>
+
+                      <div class="flex flex-col gap-1">
+                        <div class="flex gap-2 pt-2">
+                          {(listPrice ?? 0) > (price ?? 0) && (
+                            <span class="line-through font-normal text-gray-400">
+                              {formatPrice(listPrice, offers?.priceCurrency)}
+                            </span>
+                          )}
+
+                          <span class="font-medium text-base-400">
+                            {formatPrice(price, offers?.priceCurrency)}
+                          </span>
+                        </div>
+
+                        {installments && (
+                          <span class="font-medium text-base-400">
+                            {installments.replace(".", ",")}
+                          </span>
+                        )}
+                      </div>
+                    </a>
+                  </li>
+                );
+              },
+            )}
+          </ul>
         </div>
       </div>
     </div>

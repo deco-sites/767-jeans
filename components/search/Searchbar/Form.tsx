@@ -34,6 +34,7 @@ export interface SearchbarProps {
   /** @description Loader to run when suggesting new elements */
   loader: Resolved<Suggestion | null>;
 }
+
 const script = (formId: string, name: string, popupId: string) => {
   const form = document.getElementById(formId) as HTMLFormElement | null;
   const input = form?.elements.namedItem(name) as HTMLInputElement | null;
@@ -59,31 +60,28 @@ const script = (formId: string, name: string, popupId: string) => {
     }
   });
 };
+
 const Suggestions = import.meta.resolve("./Suggestions.tsx");
+
 export default function Searchbar(
   { placeholder = "What are you looking for?", loader }: SearchbarProps,
 ) {
   const slot = useId();
+
   return (
     <div
-      class="w-full grid gap-8 px-4 py-6"
+      class="grid w-full px-4 relative"
       style={{ gridTemplateRows: "min-content auto" }}
     >
-      <form id={SEARCHBAR_INPUT_FORM_ID} action={ACTION} class="join">
-        <button
-          type="submit"
-          class="btn join-item btn-square no-animation"
-          aria-label="Search"
-          for={SEARCHBAR_INPUT_FORM_ID}
-          tabIndex={-1}
-        >
-          <span class="loading loading-spinner loading-xs hidden [.htmx-request_&]:inline" />
-          <Icon id="search" class="inline [.htmx-request_&]:hidden" />
-        </button>
+      <form
+        id={SEARCHBAR_INPUT_FORM_ID}
+        action={ACTION}
+        class="flex items-center justify-between w-full border-b py-1.5"
+      >
         <input
           autoFocus
           tabIndex={0}
-          class="input input-bordered join-item flex-grow"
+          class="flex flex-grow focus:outline-none placeholder:text-black"
           name={NAME}
           placeholder={placeholder}
           autocomplete="off"
@@ -95,14 +93,19 @@ export default function Searchbar(
           hx-indicator={`#${SEARCHBAR_INPUT_FORM_ID}`}
           hx-swap="innerHTML"
         />
-        <label
-          type="button"
-          class="join-item btn btn-ghost btn-square hidden sm:inline-flex no-animation"
-          for={SEARCHBAR_POPUP_ID}
-          aria-label="Toggle searchbar"
+
+        <button
+          type="submit"
+          aria-label="Search"
+          for={SEARCHBAR_INPUT_FORM_ID}
+          tabIndex={-1}
         >
-          <Icon id="close" />
-        </label>
+          <span class="loading loading-spinner loading-xs hidden [.htmx-request_&]:inline" />
+          <Icon
+            id="search"
+            class="inline [.htmx-request_&]:hidden text-error"
+          />
+        </button>
       </form>
 
       {/* Suggestions slot */}
