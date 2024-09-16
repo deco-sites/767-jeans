@@ -1,1 +1,73 @@
-{"__resolveType":"site/sections/Header/Header.tsx","searchbar":{"loader":{"__resolveType":"resolved","data":{"__resolveType":"vtex/loaders/intelligentSearch/suggestions.ts","count":12}},"placeholder":"O que você está procurando?"},"alerts":["<p>FRETE FIXO <strong>R$ 9,90</strong> PARA <strong>SUL, SUDESTE, MS</strong></p>"],"logo":{"src":"https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/58d31b4b-fc90-4571-ae8c-c386ce0c347c/09153c6d-fe80-4c20-8230-a8f2f2d3af49___d953a87c6b1428e75a690ba2659d5c6d.webp","alt":"767 Logo","width":129,"height":45},"navItems":[{"children":[{"image":[],"children":[{"image":[],"children":[],"name":"Flare","url":"/feminino/calcas/flare"},{"image":[],"children":[],"name":"Skinny","url":"/feminino/calcas/skinny"},{"image":[],"children":[],"name":"Wide Leg","url":"/feminino/calcas/wide-leg"}],"name":"Calças","url":"/feminino/calcas"},{"image":[],"children":[],"name":"Shorts","url":"/feminino/shorts"}],"@type":"SiteNavigationElement","url":"/feminino","name":"FEMININO"}],"loading":"eager"}
+{
+  "__resolveType": "site/sections/Header/Header.tsx",
+  "searchbar": {
+    "loader": {
+      "__resolveType": "resolved",
+      "data": {
+        "__resolveType": "vtex/loaders/intelligentSearch/suggestions.ts",
+        "count": 12
+      }
+    },
+    "placeholder": "O que você está procurando?"
+  },
+  "alerts": [
+    "<p>FRETE FIXO <strong>R$ 9,90</strong> PARA <strong>SUL, SUDESTE, MS</strong></p>"
+  ],
+  "logo": {
+    "src": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/58d31b4b-fc90-4571-ae8c-c386ce0c347c/09153c6d-fe80-4c20-8230-a8f2f2d3af49___d953a87c6b1428e75a690ba2659d5c6d.webp",
+    "alt": "767 Logo",
+    "width": 129,
+    "height": 45
+  },
+  "navItems": [
+    {
+      "children": [
+        {
+          "image": [],
+          "children": [
+            {
+              "image": [],
+              "children": [],
+              "name": "Flare",
+              "url": "/feminino/calcas/flare"
+            },
+            {
+              "image": [],
+              "children": [],
+              "name": "Skinny",
+              "url": "/feminino/calcas/skinny"
+            },
+            {
+              "image": [],
+              "children": [],
+              "name": "Wide Leg",
+              "url": "/feminino/calcas/wide-leg"
+            }
+          ],
+          "name": "Calças",
+          "url": "/feminino/calcas"
+        },
+        {
+          "image": [],
+          "children": [],
+          "name": "Shorts",
+          "url": "/feminino/shorts"
+        }
+      ],
+      "@type": "SiteNavigationElement",
+      "url": "/feminino",
+      "name": "FEMININO",
+      "image": [
+        {
+          "image": [],
+          "video": [],
+          "url": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/39d35242-6c1c-4fcc-9efa-4d07948749fc/7cab0719-5ba4-4b13-a5ae-c77a19af04d5___84aceeb0c051699bf38396bd97c6cf07.webp",
+          "alternateName": "Banner Image",
+          "contentUrl": "/feminino",
+          "description": "Banner Image"
+        }
+      ]
+    }
+  ],
+  "loading": "eager"
+}

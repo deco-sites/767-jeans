@@ -5,7 +5,9 @@ import {
   NAVBAR_HEIGHT_DESKTOP,
 } from "../../constants.ts";
 
-function NavItem({ item }: { item: SiteNavigationElement }) {
+function NavItem(
+  { item, index }: { item: SiteNavigationElement; index: number },
+) {
   const { url, name, children } = item;
   const image = item?.image?.[0];
 
@@ -24,39 +26,37 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
       {children && children.length > 0 &&
         (
           <div
-            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-40 items-start justify-center gap-6 border-t-2 border-b-2 border-base-200 w-screen"
+            class={`${
+              index! > 5 && "translate-x-1/2 -left-1/2 flex-row-reverse"
+            } absolute hidden hover:flex group-hover:flex bg-base-100 z-50 justify-start items-stretch w-[360px] h-[300px]`}
             style={{
-              top: "0px",
-              left: "0px",
-              marginTop: HEADER_HEIGHT_DESKTOP,
+              top: HEADER_HEIGHT_DESKTOP,
             }}
           >
-            {image?.url && (
+            {image && (
               <Image
-                class="p-6"
-                src={image.url}
+                src={image.url!}
                 alt={image.alternateName}
-                width={300}
-                height={332}
+                width={330}
+                height={300}
                 loading="lazy"
+                decoding="async"
               />
             )}
-            <ul class="flex items-start justify-start gap-6 container max-w-site">
+
+            <ul class="flex flex-wrap flex-col p-4 bg-white mt-[-1px]">
+              <li class="flex items-center justify-center p-2 border opacity-90 hover:opacity-100 transition-colors duration-100 max-w-[80px]">
+                <a href={url}>Ver tudo</a>
+              </li>
+
               {children.map((node) => (
-                <li class="p-6 pl-0">
-                  <a class="hover:underline" href={node.url}>
+                <li class="p-2 opacity-90 hover:opacity-100 transition-colors duration-100">
+                  <a
+                    class="block min-w-[170px]"
+                    href={node.url}
+                  >
                     <span>{node.name}</span>
                   </a>
-
-                  <ul class="flex flex-col gap-1 mt-4">
-                    {node.children?.map((leaf) => (
-                      <li>
-                        <a class="hover:underline" href={leaf.url}>
-                          <span class="text-xs">{leaf.name}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
                 </li>
               ))}
             </ul>
