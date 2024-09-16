@@ -31,11 +31,11 @@ function Sort({ sortOptions, url }: Props) {
     label,
   }));
   return (
-    <>
-      <label for="sort" class="sr-only">Sort by</label>
+    <div class="flex items-center justify-end max-w-sm gap-2">
+      <label for="sort">Ordenar por:</label>
       <select
         name="sort"
-        class="select w-full max-w-sm rounded-lg"
+        class="border py-2 px-4 cursor-pointer"
         hx-on:change={useScript(() => {
           const select = event!.currentTarget as HTMLSelectElement;
           window.location.href = select.value;
@@ -51,7 +51,7 @@ function Sort({ sortOptions, url }: Props) {
           </option>
         ))}
       </select>
-    </>
+    </div>
   );
 }
 export default Sort;

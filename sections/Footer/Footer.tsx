@@ -43,7 +43,7 @@ function Footer({
       class="px-5 sm:px-0 mt-5 sm:mt-10"
       style={{ backgroundColor: "#EFF0F0" }}
     >
-      <div class="container flex flex-col gap-5 sm:gap-10 py-10">
+      <div class="container flex flex-col gap-5 sm:gap-10 py-10 max-w-site">
         <ul class="grid grid-flow-row sm:grid-flow-col gap-6 ">
           {links.map(({ title, href, children }) => (
             <li class="flex flex-col gap-4">

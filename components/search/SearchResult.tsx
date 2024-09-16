@@ -97,7 +97,7 @@ function PageResult(props: SectionProps<typeof loader>) {
         class={clx(
           "grid items-center",
           "grid-cols-2 gap-2",
-          "sm:grid-cols-4 sm:gap-10",
+          "sm:grid-cols-3 sm:gap-10",
           "w-full",
         )}
       >
@@ -229,7 +229,7 @@ function Result(props: SectionProps<typeof loader>) {
         {partial
           ? <PageResult {...props} />
           : (
-            <div class="container flex flex-col gap-4 sm:gap-5 w-full py-4 sm:py-5 px-5 sm:px-0">
+            <div class="container flex flex-col gap-4 sm:gap-5 w-full py-4 sm:py-5 px-5 xl:px-0 max-w-site">
               <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
 
               {device === "mobile" && (
@@ -264,7 +264,7 @@ function Result(props: SectionProps<typeof loader>) {
                 </Drawer>
               )}
 
-              <div class="grid place-items-center grid-cols-1 sm:grid-cols-[250px_1fr] gap-4">
+              <div class="grid place-items-center grid-cols-1 sm:grid-cols-[250px_1fr] gap-6">
                 {device === "desktop" && (
                   <aside class="place-self-start flex flex-col gap-9">
                     <span class="text-base font-semibold h-12 flex items-center">
@@ -279,9 +279,7 @@ function Result(props: SectionProps<typeof loader>) {
                   {device === "desktop" && (
                     <div class="flex justify-between items-center">
                       {results}
-                      <div>
-                        {sortBy}
-                      </div>
+                      {sortBy}
                     </div>
                   )}
                   <PageResult {...props} />
