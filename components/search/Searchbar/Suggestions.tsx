@@ -8,6 +8,7 @@ import { relative } from "../../../sdk/url.ts";
 import { ComponentProps } from "../../../sections/Component.tsx";
 import Image from "apps/website/components/Image.tsx";
 import { NAME } from "./Form.tsx";
+import { SEARCHBAR_POPUP_ID } from "../../../constants.ts";
 
 export interface Props {
   /**
@@ -55,8 +56,9 @@ function Suggestions(
 
   return (
     <div
+      id={SEARCHBAR_POPUP_ID}
       class={clx(
-        `absolute z-50 bg-white w-full px-5`,
+        `absolute z-50 bg-white w-full xl:px-5`,
         !hasProducts && !hasTerms && "hidden",
       )}
     >
@@ -70,65 +72,77 @@ function Suggestions(
             Produtos sugeridos
           </span>
 
-          <ul class="flex flex-col gap-1.5 max-h-[400px] overflow-y-auto scrollbar px-1">
-            {products?.map(
-              ({ url, name, image: images, offers, isVariantOf }) => {
-                const [front] = images ?? [];
-                const title = isVariantOf?.name ?? name;
-                const { listPrice, price, installments } = useOffer(offers);
-                const relativeUrl = relative(url);
+          {products && products.length > 0
+            ? (
+              <ul class="flex flex-col gap-1.5 max-h-[400px] overflow-y-auto scrollbar px-1 my-4">
+                {products?.map(
+                  ({ url, name, image: images, offers, isVariantOf }) => {
+                    const [front] = images ?? [];
+                    const title = isVariantOf?.name ?? name;
+                    const { listPrice, price, installments } = useOffer(offers);
+                    const relativeUrl = relative(url);
 
-                const WIDTH = 100;
-                const HEIGHT = 100;
+                    const WIDTH = 100;
+                    const HEIGHT = 100;
 
-                return (
-                  <li class="flex justify-between gap-2 first:mt-4 last:mb-4 w-full">
-                    <a
-                      href={relativeUrl}
-                      aria-label="view product"
-                      class="contents"
-                    >
-                      <Image
-                        src={front.url!}
-                        alt={front.alternateName}
-                        width={WIDTH}
-                        height={HEIGHT}
-                        loading="lazy"
-                        decoding="async"
-                        class="min-w-[100px] max-w-[100px] h-[150px]"
-                      />
-                    </a>
+                    return (
+                      <li class="flex justify-between gap-2 w-full">
+                        <a
+                          href={relativeUrl}
+                          aria-label="view product"
+                          class="contents"
+                        >
+                          <Image
+                            src={front.url!}
+                            alt={front.alternateName}
+                            width={WIDTH}
+                            height={HEIGHT}
+                            loading="lazy"
+                            decoding="async"
+                            class="min-w-[100px] max-w-[100px] h-[150px]"
+                          />
+                        </a>
 
-                    <a href={relativeUrl}>
-                      <span class="font-medium">
-                        {title}
-                      </span>
-
-                      <div class="flex flex-col gap-1">
-                        <div class="flex gap-2 pt-2">
-                          {(listPrice ?? 0) > (price ?? 0) && (
-                            <span class="line-through font-normal text-gray-400">
-                              {formatPrice(listPrice, offers?.priceCurrency)}
-                            </span>
-                          )}
-
-                          <span class="font-medium text-base-400">
-                            {formatPrice(price, offers?.priceCurrency)}
+                        <a href={relativeUrl}>
+                          <span class="font-medium">
+                            {title}
                           </span>
-                        </div>
 
-                        {installments && (
-                          <span class="font-medium text-base-400">
-                            {installments.replace(".", ",")}
-                          </span>
-                        )}
-                      </div>
-                    </a>
-                  </li>
-                );
-              },
+                          <div class="flex flex-col gap-1">
+                            <div class="flex gap-2 pt-2">
+                              {(listPrice ?? 0) > (price ?? 0) && (
+                                <span class="line-through font-normal text-gray-400">
+                                  {formatPrice(
+                                    listPrice,
+                                    offers?.priceCurrency,
+                                  )}
+                                </span>
+                              )}
+
+                              <span class="font-medium text-base-400">
+                                {formatPrice(price, offers?.priceCurrency)}
+                              </span>
+                            </div>
+
+                            {installments && (
+                              <span class="font-medium text-base-400">
+                                {installments.replace(".", ",")}
+                              </span>
+                            )}
+                          </div>
+                        </a>
+                      </li>
+                    );
+                  },
+                )}
+              </ul>
+            )
+            : (
+              <span class="pb-2">
+                Não encontramos nenhum produto com este termo. Tente buscar por
+                outro termo.
+              </span>
             )}
-          </ul>
         </div>
       </div>
     </div>

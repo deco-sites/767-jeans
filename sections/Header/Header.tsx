@@ -94,7 +94,7 @@ const Mobile = ({ logo, searchbar, navItems, loading }: Props) => (
     <Drawer
       id={SEARCHBAR_DRAWER_ID}
       aside={
-        <Drawer.Aside title="Search" drawer={SEARCHBAR_DRAWER_ID}>
+        <Drawer.Aside title="Buscar" drawer={SEARCHBAR_DRAWER_ID}>
           <div class="w-screen overflow-y-auto">
             {loading === "lazy"
               ? (

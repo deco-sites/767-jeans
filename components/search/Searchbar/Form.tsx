@@ -38,6 +38,7 @@ export interface SearchbarProps {
 const script = (formId: string, name: string, popupId: string) => {
   const form = document.getElementById(formId) as HTMLFormElement | null;
   const input = form?.elements.namedItem(name) as HTMLInputElement | null;
+
   form?.addEventListener("submit", () => {
     const search_term = input?.value;
     if (search_term) {
@@ -47,6 +48,28 @@ const script = (formId: string, name: string, popupId: string) => {
       });
     }
   });
+
+  // Handle clicking outside of Suggestions
+  addEventListener("click", (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const suggestions = document.getElementById(popupId);
+    if (
+      suggestions &&
+      !suggestions.contains(target) &&
+      !target.closest(`#${formId}`)
+    ) {
+      suggestions.classList.add("hidden");
+    }
+  });
+
+  input?.addEventListener("click", () => {
+    if (input?.value.trim() !== "") {
+      const suggestions = document.getElementById(popupId);
+
+      suggestions?.classList.remove("hidden");
+    }
+  });
+
   // Keyboard event listeners
   addEventListener("keydown", (e: KeyboardEvent) => {
     const isK = e.key === "k" || e.key === "K" || e.keyCode === 75;
@@ -70,7 +93,7 @@ export default function Searchbar(
 
   return (
     <div
-      class="grid w-full px-4 relative"
+      class="grid w-full px-4 xl:px-0 relative"
       style={{ gridTemplateRows: "min-content auto" }}
     >
       <form
