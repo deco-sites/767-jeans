@@ -9,6 +9,7 @@ import ShippingSimulationForm from "../shipping/Form.tsx";
 import AddToCartButton from "./AddToCartButton.tsx";
 import OutOfStock from "./OutOfStock.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
+import MeasurementModal from "./measurement/MeasurementModal.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -120,6 +121,10 @@ function ProductInfo({ page }: Props) {
             ou em até {installments.replace(".", ",")}
           </span>
         )}
+      </div>
+
+      <div class="mt-4 sm:mt-6">
+        <MeasurementModal />
       </div>
 
       {/* Sku Selector */}
