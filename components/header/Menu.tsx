@@ -16,9 +16,9 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
       >
         {item.name}
       </a>
-    )
+    );
   }
-  
+
   return (
     <div class="collapse collapse-plus">
       <input type="checkbox" />
