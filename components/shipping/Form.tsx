@@ -18,7 +18,7 @@ export default function Form({ items }: Props) {
       </div>
 
       <form
-        class="relative join"
+        class="flex items-center justify-between border max-w-52"
         hx-target={`#${slot}`}
         hx-swap="innerHTML"
         hx-sync="this:replace"
@@ -29,15 +29,16 @@ export default function Form({ items }: Props) {
         <input
           as="input"
           type="text"
-          class="input input-bordered join-item w-48"
+          class="w-full h-full focus:outline-none pl-1"
           placeholder="00000000"
           name="postalCode"
           maxLength={8}
           size={8}
         />
+
         <button
           type="submit"
-          class="btn join-item no-animation bg-[#ececec] hover:bg-[#ececec]/80"
+          class="btn join-item no-animation rounded-none bg-black hover:bg-black/80 text-white"
         >
           <span class="[.htmx-request_&]:hidden inline">Calcular</span>
           <span class="[.htmx-request_&]:inline hidden loading loading-spinner loading-xs" />

@@ -52,7 +52,7 @@ export default function Results({ result }: ComponentProps<typeof action>) {
     <ul class="flex flex-col gap-4 p-4 border border-base-400 rounded">
       {methods.map((method) => (
         <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
-          <span class="text-button text-center">
+          <span class="text-button text-start">
             Entrega {method.name} - até{" "}
             {formatShippingEstimate(method.shippingEstimate)}
           </span>

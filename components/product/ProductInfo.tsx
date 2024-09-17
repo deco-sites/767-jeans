@@ -72,6 +72,8 @@ function ProductInfo({ page }: Props) {
     item.value === "Desconto Progressivo"
   );
 
+  const isAvailability = availability === "https://schema.org/InStock";
+
   //Checks if the variant name is "title"/"default title" and if so, the SKU Selector div doesn't render
   const hasValidVariants = isVariantOf?.hasVariant?.some(
     (variant) =>
@@ -129,7 +131,7 @@ function ProductInfo({ page }: Props) {
 
       {/* Add to Cart and Favorites button */}
       <div class="mt-4 sm:mt-6 flex flex-col gap-2">
-        {availability === "https://schema.org/InStock"
+        {isAvailability
           ? (
             <>
               <AddToCartButton
@@ -146,11 +148,13 @@ function ProductInfo({ page }: Props) {
       </div>
 
       {/* Shipping Simulation */}
-      <div class="mt-8">
-        <ShippingSimulationForm
-          items={[{ id: Number(product.sku), quantity: 1, seller: seller }]}
-        />
-      </div>
+      {isAvailability && (
+        <div class="mt-8">
+          <ShippingSimulationForm
+            items={[{ id: Number(product.sku), quantity: 1, seller: seller }]}
+          />
+        </div>
+      )}
     </div>
   );
 }
