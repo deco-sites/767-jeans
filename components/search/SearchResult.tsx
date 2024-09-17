@@ -188,6 +188,7 @@ function Result(props: SectionProps<typeof loader>) {
   const container = useId();
   const controls = useId();
   const device = useDevice();
+  const isDesktop = device === "desktop";
   const { startingPage = 0, url, partial } = props;
   const page = props.page!;
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
@@ -232,7 +233,7 @@ function Result(props: SectionProps<typeof loader>) {
             <div class="container flex flex-col gap-4 sm:gap-5 w-full py-4 sm:py-5 px-5 xl:px-0 max-w-site">
               <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
 
-              {device === "mobile" && (
+              {!isDesktop && (
                 <Drawer
                   id={controls}
                   aside={
@@ -251,21 +252,21 @@ function Result(props: SectionProps<typeof loader>) {
                     </div>
                   }
                 >
-                  <div class="flex sm:hidden justify-between items-end">
-                    <div class="flex flex-col">
-                      {results}
+                  <div class="flex flex-col xl:hidden justify-between gap-2">
+                    {results}
+
+                    <div class="flex justify-between gap-1.5 w-full">
+                      <label class="btn btn-outline rounded-md" for={controls}>
+                        Filtros
+                      </label>
                       {sortBy}
                     </div>
-
-                    <label class="btn btn-ghost" for={controls}>
-                      Filtros
-                    </label>
                   </div>
                 </Drawer>
               )}
 
-              <div class="grid place-items-center grid-cols-1 sm:grid-cols-[250px_1fr] gap-1">
-                {device === "desktop" && (
+              <div class="grid place-items-center grid-cols-1 xl:grid-cols-[250px_1fr] gap-1">
+                {isDesktop && (
                   <aside class="place-self-start flex flex-col gap-9">
                     <span class="text-base font-semibold h-12 flex items-center">
                       Filtros
@@ -276,7 +277,7 @@ function Result(props: SectionProps<typeof loader>) {
                 )}
 
                 <div class="flex flex-col gap-9">
-                  {device === "desktop" && (
+                  {isDesktop && (
                     <div class="flex justify-between items-center">
                       {results}
                       {sortBy}

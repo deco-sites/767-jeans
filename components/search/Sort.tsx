@@ -32,7 +32,7 @@ function Sort({ sortOptions, url }: Props) {
   }));
   return (
     <div class="flex items-center justify-end max-w-sm gap-2">
-      <label for="sort">Ordenar por:</label>
+      <label for="sort" class="hidden sm:block">Ordenar por:</label>
       <select
         name="sort"
         class="border py-2 px-4 cursor-pointer"
