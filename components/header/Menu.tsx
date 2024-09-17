@@ -6,17 +6,30 @@ export interface Props {
 }
 
 function MenuItem({ item }: { item: SiteNavigationElement }) {
+  const hasChildren = item.children && item.children.length > 0;
+
+  if (!hasChildren) {
+    return (
+      <a
+        href={item.url}
+        title={item.name}
+      >
+        {item.name}
+      </a>
+    )
+  }
+  
   return (
     <div class="collapse collapse-plus">
       <input type="checkbox" />
-      <div class="collapse-title">{item.name}</div>
-      <div class="collapse-content">
+      <div class="collapse-title px-0">{item.name}</div>
+      <div class="collapse-content px-0">
         <ul>
-          <li>
-            <a class="underline text-sm" href={item.url}>Ver todos</a>
+          <li class="pl-4">
+            <a href={item.url}>Ver todos</a>
           </li>
           {item.children?.map((node) => (
-            <li>
+            <li class="pl-4">
               <MenuItem item={node} />
             </li>
           ))}
