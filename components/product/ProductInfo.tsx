@@ -82,6 +82,9 @@ function ProductInfo({ page }: Props) {
       variant?.name?.toLowerCase() !== "default title",
   ) ?? false;
 
+  const size = additionalProperty.find((item) => item.name === "Tamanho")
+    ?.value;
+
   return (
     <div {...viewItemEvent} class="flex flex-col" id={id}>
       {/* Price tag */}
@@ -123,9 +126,11 @@ function ProductInfo({ page }: Props) {
         )}
       </div>
 
-      <div class="mt-4 sm:mt-6">
-        <MeasurementModal />
-      </div>
+      {size && (
+        <div class="mt-4 sm:mt-6">
+          <MeasurementModal size={size} />
+        </div>
+      )}
 
       {/* Sku Selector */}
       {hasValidVariants && (

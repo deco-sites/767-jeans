@@ -18,7 +18,7 @@ export default function Form({ items }: Props) {
       </div>
 
       <form
-        class="flex items-center justify-between border max-w-52"
+        class="flex items-center justify-between border max-w-60"
         hx-target={`#${slot}`}
         hx-swap="innerHTML"
         hx-sync="this:replace"
@@ -29,7 +29,7 @@ export default function Form({ items }: Props) {
         <input
           as="input"
           type="text"
-          class="w-full h-full focus:outline-none pl-1"
+          class="w-full h-full focus:outline-none pl-2"
           placeholder="00000000"
           name="postalCode"
           maxLength={8}

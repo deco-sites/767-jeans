@@ -1,6 +1,6 @@
 import { MeasurementTable } from "./MeasurementTable.tsx";
 
-export default function MeasurementModal() {
+export default function MeasurementModal({ size }: { size: string }) {
   return (
     <>
       <label for="measurement-table">
@@ -10,7 +10,7 @@ export default function MeasurementModal() {
       <input type="checkbox" id="measurement-table" class="modal-toggle" />
       <div class="modal" role="dialog">
         <div class="modal-box">
-          <MeasurementTable />
+          <MeasurementTable size={size} />
         </div>
         <label class="modal-backdrop" for="measurement-table">Close</label>
       </div>
