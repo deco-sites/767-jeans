@@ -26,7 +26,7 @@
         "__resolveType": "site/sections/Product/ProductShelf.tsx",
         "products": {
           "__resolveType": "vtex/loaders/legacy/relatedProductsLoader.ts",
-          "crossSelling": "similars",
+          "crossSelling": "whoboughtalsobought",
           "slug": {
             "__resolveType": "website/functions/requestToParam.ts",
             "param": "slug"

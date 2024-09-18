@@ -10,6 +10,7 @@ import AddToCartButton from "./AddToCartButton.tsx";
 import OutOfStock from "./OutOfStock.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import MeasurementModal from "./measurement/MeasurementModal.tsx";
+import PromotionTable from "./promotion/PromotionTable.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -126,7 +127,13 @@ function ProductInfo({ page }: Props) {
         )}
       </div>
 
-      {size && (
+      {isAvailability && hasProgressiveDiscount && (
+        <div class="mt-4 sm:mt-6">
+          <PromotionTable />
+        </div>
+      )}
+
+      {size && isAvailability && (
         <div class="mt-4 sm:mt-6">
           <MeasurementModal size={size} />
         </div>
