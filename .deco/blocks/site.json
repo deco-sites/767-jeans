@@ -36,7 +36,16 @@
   "routes": [
     {
       "__resolveType": "vtex/loaders/proxy.ts",
-      "extraPathsToProxy": [],
+      "extraPathsToProxy": [
+        "/sobre",
+        "/trocas-e-devolucoes",
+        "/entrega-e-frete",
+        "/politica-de-privacidade",
+        "/termos-de-uso",
+        "/perguntas-frequentes",
+        "/pagamento",
+        "/cupom-de-desconto"
+      ],
       "includeSiteMap": [],
       "excludePathsFromDecoSiteMap": []
     },

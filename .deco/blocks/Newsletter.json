@@ -1,9 +1,9 @@
 {
   "__resolveType": "site/sections/Newsletter/Newsletter.tsx",
-  "label": "Sign up",
-  "placeholder": "Email address",
+  "label": "Cadastrar",
+  "placeholder": "Seu e-mail",
   "empty": {
-    "title": "Receba novidades, prmoções e mais.",
+    "title": "Receba novidades, promoções e mais.",
     "description": "Receba nossas novidades e promoções com antecedência. Aproveite e ganhe descontos na sua primeira compra. Para mais informações clique aqui."
   },
   "success": {

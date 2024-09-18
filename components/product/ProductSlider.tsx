@@ -1,5 +1,4 @@
 import { Product } from "apps/commerce/types.ts";
-import { clx } from "../../sdk/clx.ts";
 import Icon from "../ui/Icon.tsx";
 import Slider from "../ui/Slider.tsx";
 import ProductCard from "./ProductCard.tsx";
@@ -27,11 +26,7 @@ function ProductSlider({ products, itemListName }: Props) {
             {products?.map((product, index) => (
               <Slider.Item
                 index={index}
-                class={clx(
-                  "carousel-item",
-                  "first:pl-5 first:sm:pl-0",
-                  "last:pr-5 last:sm:pr-0",
-                )}
+                class="carousel-item"
               >
                 <ProductCard
                   index={index}

@@ -4,8 +4,8 @@ import Section, {
   type Props as SectionHeaderProps,
 } from "../../components/ui/Section.tsx";
 import Slider from "../../components/ui/Slider.tsx";
-import { clx } from "../../sdk/clx.ts";
 import { type SectionProps } from "@deco/deco";
+
 export interface Data {
   id: string;
   permalink: string;
@@ -106,11 +106,7 @@ function InstagramPosts({
         {posts.map((item, index) => (
           <Slider.Item
             index={index}
-            class={clx(
-              "carousel-item",
-              "first:pl-5 first:sm:pl-0",
-              "last:pr-5 last:sm:pr-0",
-            )}
+            class="carousel-item"
           >
             <a href={item.permalink} target="_blank">
               {item.media_type === "IMAGE"

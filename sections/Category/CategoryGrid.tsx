@@ -4,9 +4,9 @@ import Section, {
   type Props as SectionHeaderProps,
 } from "../../components/ui/Section.tsx";
 import Slider from "../../components/ui/Slider.tsx";
-import { clx } from "../../sdk/clx.ts";
 import { LoadingFallbackProps } from "deco/mod.ts";
 import { useDevice } from "@deco/deco/hooks";
+
 /** @titleBy label */
 export interface Item {
   image: ImageWidget;
@@ -49,11 +49,7 @@ function CategoryGrid({ title, cta, items }: Props) {
             {items.map((i, index) => (
               <Slider.Item
                 index={index}
-                class={clx(
-                  "carousel-item",
-                  "first:pl-5 first:sm:pl-0",
-                  "last:pr-5 last:sm:pr-0",
-                )}
+                class="carousel-item"
               >
                 <Card {...i} />
               </Slider.Item>

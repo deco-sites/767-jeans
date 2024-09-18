@@ -18,7 +18,7 @@ export default function Form({ items }: Props) {
       </div>
 
       <form
-        class="flex items-center justify-between border max-w-60"
+        class="flex items-center justify-between border max-w-60 h-12"
         hx-target={`#${slot}`}
         hx-swap="innerHTML"
         hx-sync="this:replace"
@@ -38,7 +38,7 @@ export default function Form({ items }: Props) {
 
         <button
           type="submit"
-          class="btn join-item no-animation rounded-none bg-black hover:bg-black/80 text-white"
+          class="flex items-center justify-center px-4 font-medium h-full bg-black hover:bg-black/80 text-white"
         >
           <span class="[.htmx-request_&]:hidden inline">Calcular</span>
           <span class="[.htmx-request_&]:inline hidden loading loading-spinner loading-xs" />
