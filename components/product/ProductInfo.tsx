@@ -11,6 +11,7 @@ import OutOfStock from "./OutOfStock.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import MeasurementModal from "./measurement/MeasurementModal.tsx";
 import PromotionTable from "./promotion/PromotionTable.tsx";
+import Rating from "../ui/Rating.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -124,6 +125,16 @@ function ProductInfo({ page }: Props) {
           <span class="text-sm/4 font-normal">
             ou em até {installments.replace(".", ",")}
           </span>
+        )}
+
+        {(product?.aggregateRating?.ratingValue ?? 0) > 0 && (
+          <div class="mt-0.5">
+            <Rating
+              maxRating={5}
+              rating={Math.floor(product!.aggregateRating!.ratingValue!)}
+              size="rating-sm"
+            />
+          </div>
         )}
       </div>
 

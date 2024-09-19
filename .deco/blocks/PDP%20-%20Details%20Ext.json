@@ -1,0 +1,11 @@
+{
+  "__resolveType": "commerce/loaders/product/extensions/detailsPage.ts",
+  "data": {
+    "__resolveType": "PDP Loader"
+  },
+  "extensions": [
+    {
+      "__resolveType": "PDP - Extension"
+    }
+  ]
+}

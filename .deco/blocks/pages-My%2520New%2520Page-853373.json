@@ -8,7 +8,7 @@
     {
       "__resolveType": "commerce/sections/Seo/SeoPDPV2.tsx",
       "jsonLD": {
-        "__resolveType": "PDP Loader"
+        "__resolveType": "PDP - Details Ext"
       }
     },
     {
@@ -16,7 +16,7 @@
       "section": {
         "__resolveType": "site/sections/Product/ProductDetails.tsx",
         "page": {
-          "__resolveType": "PDP Loader"
+          "__resolveType": "PDP - Details Ext"
         }
       }
     },
