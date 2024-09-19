@@ -6,9 +6,11 @@ export interface Props {
   aggregateRating: AggregateRating;
 }
 
-export default function Review({ aggregateRating }: Props) {
+export default function Review({ reviews, aggregateRating }: Props) {
   const ratingValue = aggregateRating.ratingValue ?? 0;
   const ratingCount = aggregateRating.ratingCount ?? 0;
+
+  console.log(reviews);
 
   return (
     <div class="flex flex-col gap-1.5">
@@ -22,6 +24,35 @@ export default function Review({ aggregateRating }: Props) {
           {`${ratingValue} Classificação média (${ratingCount} avaliações)`}
         </span>
       </div>
+
+      <ul class="flex flex-col gap-1">
+        {reviews.map((review) => (
+          <div class="collapse collapse-arrow rounded-none border-b-4">
+            <input type="checkbox" />
+
+            <div class="collapse-title px-0">
+              <div class="flex items-center gap-2">
+                <Rating
+                  maxRating={5}
+                  rating={Number(review.reviewHeadline)}
+                  size="rating-sm"
+                />
+                <span class="font-medium">{review.reviewHeadline}</span>
+              </div>
+            </div>
+
+            <div class="collapse-content px-0">
+              <div class="flex flex-col gap-2.5 font-normal">
+                <span>
+                  Enviado <b>{review.datePublished}</b> por{" "}
+                  <b>{review?.author?.[0].name}</b>
+                </span>
+                <p class="font-medium">{review.reviewBody}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </ul>
     </div>
   );
 }
