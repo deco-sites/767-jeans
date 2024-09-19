@@ -53,6 +53,15 @@
     {
       "__resolveType": "website/sections/Rendering/Lazy.tsx",
       "section": {
+        "__resolveType": "site/sections/Product/ProductReviews.tsx",
+        "page": {
+          "__resolveType": "PDP - Details Ext"
+        }
+      }
+    },
+    {
+      "__resolveType": "website/sections/Rendering/Lazy.tsx",
+      "section": {
         "__resolveType": "Newsletter"
       }
     },
