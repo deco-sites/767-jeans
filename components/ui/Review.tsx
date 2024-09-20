@@ -6,11 +6,30 @@ export interface Props {
   aggregateRating: AggregateRating;
 }
 
+function formatDate(dateString: string): string {
+  const publishedDate = new Date(dateString);
+  const currentDate = new Date();
+
+  if (isNaN(publishedDate.getTime())) {
+    return "data inválida";
+  }
+
+  const differenceInMilliseconds = currentDate.getTime() -
+    publishedDate.getTime();
+
+  const millisecondsPerMonth = 1000 * 60 * 60 * 24 * 30;
+  const monthsDifference = Math.floor(
+    differenceInMilliseconds / millisecondsPerMonth,
+  );
+
+  return monthsDifference > 0
+    ? `${monthsDifference} meses atrás`
+    : "recentemente";
+}
+
 export default function Review({ reviews, aggregateRating }: Props) {
   const ratingValue = aggregateRating.ratingValue ?? 0;
   const ratingCount = aggregateRating.ratingCount ?? 0;
-
-  console.log(reviews);
 
   return (
     <div class="flex flex-col gap-1.5">
@@ -44,7 +63,7 @@ export default function Review({ reviews, aggregateRating }: Props) {
             <div class="collapse-content px-0">
               <div class="flex flex-col gap-2.5 font-normal">
                 <span>
-                  Enviado <b>{review.datePublished}</b> por{" "}
+                  Enviado <b>{formatDate(review.datePublished!)}</b> por{" "}
                   <b>{review?.author?.[0].name}</b>
                 </span>
                 <p class="font-medium">{review.reviewBody}</p>
