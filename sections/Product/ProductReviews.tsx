@@ -16,7 +16,6 @@ function NotFound({ page }: Props) {
       <SubscriptionModal
         productId={page?.product?.inProductGroupWithID ??
           page?.product["@id"] ?? ""}
-        status={undefined}
       />
 
       <span class="text-lg leading-6 font-medium">Sem avaliações.</span>
@@ -40,7 +39,6 @@ export default function ProductReviews({ page }: Props) {
       <SubscriptionModal
         productId={page.product.inProductGroupWithID ?? page.product["@id"] ??
           ""}
-        status={undefined}
       />
 
       <Review reviews={review} aggregateRating={aggregateRating} />
