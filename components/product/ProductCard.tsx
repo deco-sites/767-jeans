@@ -107,7 +107,7 @@ function ProductCard({
       </figure>
 
       <a href={relativeUrl} class="pt-5">
-        <span class="font-medium">
+        <span class="font-medium line-clamp-2 xl:line-clamp-none">
           {title}
         </span>
 

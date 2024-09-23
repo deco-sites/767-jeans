@@ -11,7 +11,7 @@ import OutOfStock from "./OutOfStock.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import MeasurementModal from "./measurement/MeasurementModal.tsx";
 import PromotionTable from "./promotion/PromotionTable.tsx";
-import Rating from "../ui/Rating.tsx";
+// import Rating from "../ui/Rating.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -127,7 +127,8 @@ function ProductInfo({ page }: Props) {
           </span>
         )}
 
-        {(product?.aggregateRating?.ratingValue ?? 0) > 0 && (
+        {
+          /* {(product?.aggregateRating?.ratingValue ?? 0) > 0 && (
           <div class="mt-0.5">
             <Rating
               maxRating={5}
@@ -135,7 +136,8 @@ function ProductInfo({ page }: Props) {
               size="rating-sm"
             />
           </div>
-        )}
+        )} */
+        }
       </div>
 
       {isAvailability && hasProgressiveDiscount && (
