@@ -1,11 +1,13 @@
 import { ComponentChildren } from "preact";
 import { useId } from "../../sdk/useId.ts";
 import { useScript } from "@deco/deco/hooks";
+
 interface Props {
   open?: boolean;
   children?: ComponentChildren;
   id?: string;
 }
+
 const script = (id: string) => {
   const handler = (e: KeyboardEvent) => {
     if (e.key !== "Escape" && e.keyCode !== 27) {
@@ -19,6 +21,7 @@ const script = (id: string) => {
   };
   addEventListener("keydown", handler);
 };
+
 function Modal({ children, open, id = useId() }: Props) {
   return (
     <>
@@ -34,4 +37,5 @@ function Modal({ children, open, id = useId() }: Props) {
     </>
   );
 }
+
 export default Modal;

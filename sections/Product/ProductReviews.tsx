@@ -1,6 +1,7 @@
 import Section from "../../components/ui/Section.tsx";
-import Review from "../../components/ui/Review.tsx";
+import Review from "../../components/product/review/Review.tsx";
 import type { ProductDetailsPage } from "apps/commerce/types.ts";
+import SubscriptionModal from "../../components/product/review/SubscriptionModal.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -11,6 +12,8 @@ function NotFound() {
   return (
     <Section.Container class="border-b-4 pb-2.5 mb-10">
       <Section.Header title="OPINIÃO DE QUEM COMPROU" />
+
+      <SubscriptionModal />
 
       <span class="text-lg leading-6 font-medium">Sem avaliações.</span>
     </Section.Container>
@@ -27,6 +30,8 @@ export default function ProductReviews({ page }: Props) {
   return (
     <Section.Container>
       <Section.Header title="OPINIÃO DE QUEM COMPROU" />
+
+      <SubscriptionModal />
 
       <Review reviews={review} aggregateRating={aggregateRating} />
     </Section.Container>

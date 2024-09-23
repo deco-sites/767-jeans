@@ -1,5 +1,5 @@
 import { AggregateRating, Review as ReviewProps } from "apps/commerce/types.ts";
-import Rating from "./Rating.tsx";
+import Rating from "../../ui/Rating.tsx";
 
 export interface Props {
   reviews: ReviewProps[];
