@@ -13,7 +13,7 @@ export default function SubscriptionModal() {
       <input type="checkbox" id="aval" class="modal-toggle" />
       <div class="modal" role="dialog">
         <div class="modal-box">
-          <Avaliation />
+          <AvaliationForm />
         </div>
         <label class="modal-backdrop" for="aval">Close</label>
       </div>
@@ -21,13 +21,18 @@ export default function SubscriptionModal() {
   );
 }
 
-function Avaliation() {
+function AvaliationForm() {
   return (
     <form class="flex flex-col gap-3 w-full">
       <h2 class="font-bold text-lg">Adicionar avaliação</h2>
 
-      <AvaliationInput id="avaliation" labelName="Avaliação" />
+      <AvaliationInput id="title" labelName="Avaliação" />
+      <AvaliationRating
+        id="rating"
+        labelName="Avalie o produto de 1 até 5 estrelas"
+      />
       <AvaliationInput id="name" labelName="Seu nome" />
+      <AvaliationTextArea id="review" labelName="Escrever avaliação" />
 
       <button
         type="submit"
@@ -41,13 +46,51 @@ function Avaliation() {
 
 function AvaliationInput({ id, labelName }: InputProps) {
   return (
-    <div class="flex flex-col w-full gap-0.5">
+    <div class="flex flex-col w-full gap-1">
       <label for={id}>{labelName}</label>
 
       <input
+        name={id}
         type="text"
         required
-        class="p-1 border border-black/30 rounded-sm focus:select-none text-sm"
+        class="px-1 py-1.5 border border-black/30 rounded-sm focus:select-none text-sm"
+      />
+    </div>
+  );
+}
+
+function AvaliationRating({ id, labelName }: InputProps) {
+  const stars = Array.from({ length: 5 }, (_, index) => index + 1);
+
+  return (
+    <div class="flex flex-col w-full gap-1">
+      <label for={id}>{labelName}</label>
+
+      <div class="rating rating-sm">
+        {stars.map((_, idx) => (
+          <input
+            value={idx + 1}
+            checked={idx === 5}
+            type="radio"
+            name="rating"
+            class="mask mask-star-2 bg-orange-400"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AvaliationTextArea({ id, labelName }: InputProps) {
+  return (
+    <div class="flex flex-col w-full gap-1">
+      <label for={id}>{labelName}</label>
+
+      <textarea
+        name={id}
+        type="text"
+        required
+        class="px-1 py-1.5 border border-black/30 rounded-sm focus:select-none text-sm resize-none"
       />
     </div>
   );
