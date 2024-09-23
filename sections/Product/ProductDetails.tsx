@@ -4,6 +4,7 @@ import ProductInfo from "../../components/product/ProductInfo.tsx";
 import Breadcrumb from "../../components/ui/Breadcrumb.tsx";
 import Section from "../../components/ui/Section.tsx";
 import { clx } from "../../sdk/clx.ts";
+import Elasticity from "../../components/product/elasticity/Elasticity.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -27,6 +28,10 @@ export default function ProductDetails({ page }: Props) {
     );
   }
 
+  const elasticityValue = page.product.isVariantOf?.additionalProperty?.find((
+    item,
+  ) => item.name === "Elasticidade")?.value;
+
   return (
     <div class="container flex flex-col gap-4 sm:gap-5 w-full py-4 sm:py-5 px-5 xl:px-0 max-w-site">
       <Breadcrumb itemListElement={page.breadcrumbList.itemListElement} />
@@ -48,12 +53,19 @@ export default function ProductDetails({ page }: Props) {
 
       <div class="flex flex-col gap-6 mt-4">
         <h2 class="uppercase font-medium text-xl">Informações do produto</h2>
+
         <div
           class="font-medium"
           dangerouslySetInnerHTML={{
             __html: page.product.description?.replace(/\r?\n/g, "<br />") || "",
           }}
         />
+      </div>
+
+      <div class="flex flex-col gap-6 mt-4">
+        <h2 class="uppercase font-medium text-xl">Elasticidade</h2>
+
+        <Elasticity elasticityValue={elasticityValue} />
       </div>
     </div>
   );
