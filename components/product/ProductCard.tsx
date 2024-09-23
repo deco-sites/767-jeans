@@ -54,6 +54,19 @@ function ProductCard({
     },
   });
 
+  const priceDifference =
+    (Math.round(price ?? 0) / Math.round(listPrice ?? 0)) * 100;
+
+  const discountOnPix = offers?.offers?.[0]?.teasers?.find((teaser) =>
+    teaser.name.includes("DESCONTO NO PIX")
+  )?.effects?.parameters?.[0]?.value;
+  const pixPrice = discountOnPix
+    ? (price! - ((Number(discountOnPix) / 100) * price!))
+    : null;
+  const roundedPixPrice = (pixPrice && Math.floor(pixPrice * 100) / 100) ??
+    null;
+  const formattedPixPrice = roundedPixPrice?.toFixed(2) ?? null;
+
   return (
     <div
       {...event}
@@ -104,6 +117,12 @@ function ProductCard({
             decoding="async"
           />
         </a>
+
+        {listPrice !== price && priceDifference >= 50 && (
+          <div class="flex items-center justify-center absolute top-2 left-2 p-2 rounded-md bg-error text-white">
+            -{priceDifference}%
+          </div>
+        )}
       </figure>
 
       <a href={relativeUrl} class="pt-5">
@@ -112,20 +131,26 @@ function ProductCard({
         </span>
 
         <div class="flex flex-col gap-1">
-          <div class="flex gap-2 pt-2">
+          <div class="flex items-center gap-2 pt-2">
             {(listPrice ?? 0) > (price ?? 0) && (
-              <span class="line-through font-normal text-gray-400">
+              <span class="line-through font-medium text-gray-400">
                 {formatPrice(listPrice, offers?.priceCurrency)}
               </span>
             )}
 
-            <span class="font-medium text-base-400">
+            <span class="font-bold text-base-400">
               {formatPrice(price, offers?.priceCurrency)}
             </span>
           </div>
 
+          {formattedPixPrice && (
+            <span class="text-primary font-medium">
+              R$ {formattedPixPrice.replace(".", ",")} no <b>PIX</b>
+            </span>
+          )}
+
           {installments && (
-            <span class="font-medium text-base-400">
+            <span class="font-medium text-[#717171]">
               {installments.replace(".", ",")}
             </span>
           )}

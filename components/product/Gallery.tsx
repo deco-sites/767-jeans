@@ -3,6 +3,7 @@ import Image from "apps/website/components/Image.tsx";
 import Slider from "../ui/Slider.tsx";
 import { clx } from "../../sdk/clx.ts";
 import { useId } from "../../sdk/useId.ts";
+import { useOffer } from "../../sdk/useOffer.ts";
 
 export interface Props {
   /** @title Integration */
@@ -26,7 +27,8 @@ export default function GallerySlider(props: Props) {
     throw new Error("Missing Product Details Page Info");
   }
 
-  const { page: { product: { name, isVariantOf, image: pImages } } } = props;
+  const { page: { product: { name, isVariantOf, image: pImages, offers } } } =
+    props;
 
   // Filter images when image's alt text matches product name
   // More info at: https://community.shopify.com/c/shopify-discussions/i-can-not-add-multiple-pictures-for-my-variants/m-p/2416533
@@ -35,6 +37,10 @@ export default function GallerySlider(props: Props) {
     name?.includes(img.alternateName || "")
   );
   const images = filtered.length > 0 ? filtered : groupImages;
+
+  const { listPrice, price } = useOffer(offers);
+  const priceDifference =
+    (Math.round(price ?? 0) / Math.round(listPrice ?? 0)) * 100;
 
   return (
     <>
@@ -66,6 +72,12 @@ export default function GallerySlider(props: Props) {
                 </Slider.Item>
               ))}
             </Slider>
+
+            {listPrice !== price && priceDifference >= 50 && (
+              <div class="flex items-center justify-center absolute top-4 left-4 p-2 rounded-md bg-error text-white">
+                -{priceDifference}%
+              </div>
+            )}
           </div>
         </div>
 
