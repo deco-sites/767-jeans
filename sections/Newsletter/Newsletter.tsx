@@ -5,10 +5,12 @@ import { clx } from "../../sdk/clx.ts";
 import { usePlatform } from "../../sdk/usePlatform.tsx";
 import { useComponent } from "../Component.tsx";
 import { type SectionProps } from "@deco/deco";
+
 interface NoticeProps {
   title?: string;
   description?: string;
 }
+
 export interface Props {
   empty?: NoticeProps;
   success?: NoticeProps;
@@ -20,10 +22,12 @@ export interface Props {
   /** @hide true */
   status?: "success" | "failed";
 }
+
 export async function action(props: Props, req: Request, ctx: AppContext) {
   const platform = usePlatform();
   const form = await req.formData();
   const email = `${form.get("email") ?? ""}`;
+
   if (platform === "vtex") {
     // deno-lint-ignore no-explicit-any
     await (ctx as any).invoke("vtex/actions/newsletter/subscribe.ts", {
@@ -31,11 +35,14 @@ export async function action(props: Props, req: Request, ctx: AppContext) {
     });
     return { ...props, status: "success" };
   }
+
   return { ...props, status: "failed" };
 }
+
 export function loader(props: Props) {
   return { ...props, status: undefined };
 }
+
 function Notice({ title, description }: {
   title?: string;
   description?: string;
@@ -51,6 +58,7 @@ function Notice({ title, description }: {
     </div>
   );
 }
+
 function Newsletter({
   empty = {
     title: "Get top deals, latest trends, and more.",
@@ -85,6 +93,7 @@ function Newsletter({
       </Section.Container>
     );
   }
+
   return (
     <Section.Container class="bg-base-200">
       <div class="p-14 grid grid-flow-row sm:grid-cols-2 gap-10 sm:gap-20 place-items-center">
@@ -114,5 +123,7 @@ function Newsletter({
     </Section.Container>
   );
 }
+
 export const LoadingFallback = () => <Section.Placeholder height="412px" />;
+
 export default Newsletter;

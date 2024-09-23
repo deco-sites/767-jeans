@@ -1,9 +1,67 @@
+import { AppContext } from "../../../apps/deco/vtex.ts";
+import { useComponent } from "../../../sections/Component.tsx";
+import { type SectionProps } from "@deco/deco";
+
+interface ActionReturn {
+  status?: string;
+}
+
 interface InputProps {
   id: string;
   labelName: string;
 }
 
-export default function SubscriptionModal() {
+interface Props {
+  productId?: string;
+}
+
+async function action(
+  props: Props,
+  req: Request,
+  ctx: AppContext,
+): Promise<ActionReturn> {
+  const user = window.STOREFRONT.USER.getUser();
+
+  if (!user) {
+    return {
+      status: "<span>Algo deu errado. Certifique-se de estar logado.</span>",
+    };
+  }
+
+  const form = await req.formData();
+  const title = `${form.get("title") ?? ""}`;
+  const reviewerName = `${form.get("name") ?? ""}`;
+  const text = `${form.get("review") ?? ""}`;
+  const rating = `${form.get("rating") ?? ""}`;
+
+  const review = false;
+
+  // const review = await ctx.invoke.vtex.actions.review.submit({
+  //   data: {
+  //     productId: props.productId,
+  //     title,
+  //     rating: Number(rating) || 5,
+  //     reviewerName,
+  //     text,
+  //     approved: false,
+  //   }
+  // });
+
+  if (!review) {
+    return {
+      status: "<span>Algo deu errado. Por favor, tente novamente.</span>",
+    };
+  }
+
+  return {
+    status:
+      "<span>Obrigado por avaliar o nosso produto. Iremos aprovar a sua avaliação logo mais :)</span>",
+  };
+}
+
+export default function SubscriptionModal(
+  { status }: Props & SectionProps<typeof action>,
+) {
   return (
     <>
       <label for="aval">
@@ -13,7 +71,9 @@ export default function SubscriptionModal() {
       <input type="checkbox" id="aval" class="modal-toggle" />
       <div class="modal" role="dialog">
         <div class="modal-box">
-          <AvaliationForm />
+          {!status && <AvaliationForm />}
+          {status === "success" && <span>Tudo ok.</span>}
+          {status === "failed" && <span>Algo deu errado.</span>}
         </div>
         <label class="modal-backdrop" for="aval">Close</label>
       </div>
@@ -23,7 +83,12 @@ export default function SubscriptionModal() {
 
 function AvaliationForm() {
   return (
-    <form class="flex flex-col gap-3 w-full">
+    <form
+      hx-target="this"
+      hx-swap="innerHTML"
+      hx-post={useComponent(import.meta.url)}
+      class="flex flex-col gap-3 w-full"
+    >
       <h2 class="font-bold text-lg">Adicionar avaliação</h2>
 
       <AvaliationInput id="title" labelName="Avaliação" />
@@ -38,7 +103,11 @@ function AvaliationForm() {
         type="submit"
         class="flex items-center justify-center w-full xl:w-1/2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md mt-1 transition duration-150 ease-in-out"
       >
-        Enviar avaliação
+        <span class="[.htmx-request_&]:hidden inline">
+          Enviar avaliação
+        </span>
+
+        <span class="[.htmx-request_&]:inline hidden loading loading-spinner" />
       </button>
     </form>
   );

@@ -7,6 +7,7 @@ import Coupon from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
 import CartItem, { Item } from "./Item.tsx";
 import { useScript } from "@deco/deco/hooks";
+
 export interface Minicart {
   /** Cart from the ecommerce platform */
   platformCart: Record<string, unknown>;
@@ -24,6 +25,7 @@ export interface Minicart {
     checkoutHref: string;
   };
 }
+
 const onLoad = (formID: string) => {
   const form = document.getElementById(formID) as HTMLFormElement;
   window.STOREFRONT.CART.dispatch(form);
@@ -58,16 +60,19 @@ const onLoad = (formID: string) => {
     },
   );
 };
+
 const sendBeginCheckoutEvent = () => {
   window.DECO.events.dispatch({
     name: "being_checkout",
     params: window.STOREFRONT.CART.getCart(),
   });
 };
+
 export const action = async (_props: unknown, req: Request, ctx: AppContext) =>
   req.method === "PATCH"
     ? ({ cart: await ctx.invoke("site/loaders/minicart.ts") }) // error fallback
     : ({ cart: await ctx.invoke("site/actions/minicart/submit.ts") });
+
 export function ErrorFallback() {
   return (
     <div class="flex flex-col flex-grow justify-center items-center overflow-hidden w-full gap-2">
@@ -91,6 +96,7 @@ export function ErrorFallback() {
     </div>
   );
 }
+
 export default function Cart(
   {
     cart: {
