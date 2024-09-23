@@ -31,6 +31,10 @@
       "wishlist": null,
       "mode": "lazy",
       "user": null
+    },
+    {
+      "__resolveType": "site/sections/Social/WhatsApp.tsx",
+      "phone": 554436361451
     }
   ],
   "routes": [

@@ -7,12 +7,22 @@ export interface Props {
   page: ProductDetailsPage | null;
 }
 
+function NotFound() {
+  return (
+    <Section.Container class="border-b-4 pb-2.5 mb-10">
+      <Section.Header title="OPINIÃO DE QUEM COMPROU" />
+
+      <span class="text-lg leading-6 font-medium">Sem avaliações.</span>
+    </Section.Container>
+  );
+}
+
 export default function ProductReviews({ page }: Props) {
   if (!page || !page.product) return null;
 
   const { review, aggregateRating } = page.product;
 
-  if (!review || !aggregateRating || review.length === 0) return null;
+  if (!review || !aggregateRating || review.length === 0) return <NotFound />;
 
   return (
     <Section.Container>
