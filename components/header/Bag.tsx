@@ -2,6 +2,7 @@ import { MINICART_DRAWER_ID } from "../../constants.ts";
 import { useId } from "../../sdk/useId.ts";
 import { asset } from "$fresh/runtime.ts";
 import { useScript } from "@deco/deco/hooks";
+
 const onLoad = (id: string) =>
   window.STOREFRONT.CART.subscribe((sdk) => {
     const counter = document.getElementById(id);
@@ -17,6 +18,7 @@ const onLoad = (id: string) =>
     }
     counter.innerText = count > 9 ? "9+" : count.toString();
   });
+
 function Bag() {
   const id = useId();
   return (

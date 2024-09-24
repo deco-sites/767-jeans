@@ -3,6 +3,7 @@ import { clx } from "../../sdk/clx.ts";
 import { useId } from "../../sdk/useId.ts";
 import Icon from "./Icon.tsx";
 import { useScript } from "@deco/deco/hooks";
+
 export interface Props {
   open?: boolean;
   class?: string;
@@ -10,6 +11,7 @@ export interface Props {
   aside: ComponentChildren;
   id?: string;
 }
+
 const script = (id: string) => {
   const handler = (e: KeyboardEvent) => {
     if (e.key !== "Escape" && e.keyCode !== 27) {
@@ -23,6 +25,7 @@ const script = (id: string) => {
   };
   addEventListener("keydown", handler);
 };
+
 function Drawer(
   { children, aside, open, class: _class = "", id = useId() }: Props,
 ) {
@@ -60,6 +63,7 @@ function Drawer(
     </>
   );
 }
+
 function Aside({ title, drawer, children }: {
   title: string;
   drawer: string;
@@ -83,5 +87,7 @@ function Aside({ title, drawer, children }: {
     </div>
   );
 }
+
 Drawer.Aside = Aside;
+
 export default Drawer;

@@ -109,6 +109,7 @@ const Mobile = ({ logo, searchbar, navItems, loading }: Props) => (
     />
     <Drawer
       id={SIDEMENU_DRAWER_ID}
+      class="drawer-end"
       aside={
         <Drawer.Aside title="Menu" drawer={SIDEMENU_DRAWER_ID}>
           {loading === "lazy"
@@ -132,28 +133,10 @@ const Mobile = ({ logo, searchbar, navItems, loading }: Props) => (
         height: NAVBAR_HEIGHT_MOBILE,
       }}
     >
-      <div class="flex items-center gap-2 justify-start">
-        <label
-          for={SIDEMENU_DRAWER_ID}
-          class="btn btn-square btn-sm btn-ghost"
-          aria-label="open menu"
-        >
-          <Icon id="menu" />
-        </label>
-
-        <label
-          for={SEARCHBAR_DRAWER_ID}
-          class="btn btn-square btn-sm btn-ghost"
-          aria-label="search icon button"
-        >
-          <Icon id="search" />
-        </label>
-      </div>
-
       {logo && (
         <a
           href="/"
-          class="flex-grow inline-flex items-center justify-center"
+          class="flex-grow inline-flex items-center justify-start"
           style={{ minHeight: NAVBAR_HEIGHT_MOBILE }}
           aria-label="Store logo"
         >
@@ -167,8 +150,24 @@ const Mobile = ({ logo, searchbar, navItems, loading }: Props) => (
       )}
 
       <div class="flex items-center gap-2 justify-end">
+        <label
+          for={SEARCHBAR_DRAWER_ID}
+          class="btn btn-square btn-sm btn-ghost"
+          aria-label="search icon button"
+        >
+          <Icon id="search" />
+        </label>
+
         <Login />
         <Bag />
+
+        <label
+          for={SIDEMENU_DRAWER_ID}
+          class="btn btn-square btn-sm btn-ghost"
+          aria-label="open menu"
+        >
+          <Icon id="menu" />
+        </label>
       </div>
     </div>
   </>

@@ -68,12 +68,14 @@
         "__resolveType": "site/sections/Product/ProductShelf.tsx",
         "title": "OS MAIS VENDIDOS",
         "products": {
+          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
           "props": {
-            "sort": "OrderByTopSaleDESC",
-            "term": "jeans",
-            "count": 12
-          },
-          "__resolveType": "vtex/loaders/legacy/productList.ts"
+            "fuzzy": "automatic",
+            "query": "feminino",
+            "count": 12,
+            "hideUnavailableItems": true,
+            "sort": "orders:desc"
+          }
         }
       }
     },
@@ -81,14 +83,17 @@
       "__resolveType": "website/sections/Rendering/Lazy.tsx",
       "section": {
         "__resolveType": "site/sections/Product/ProductShelf.tsx",
-        "title": "Novidades",
+        "title": "NOVIDADES",
         "products": {
           "props": {
-            "sort": "OrderByReleaseDateDESC",
+            "sort": "release:desc",
             "term": "jeans",
-            "count": 12
+            "count": 12,
+            "fuzzy": "automatic",
+            "query": "feminino",
+            "hideUnavailableItems": true
           },
-          "__resolveType": "vtex/loaders/legacy/productList.ts"
+          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
         }
       }
     },
@@ -96,14 +101,17 @@
       "__resolveType": "website/sections/Rendering/Lazy.tsx",
       "section": {
         "__resolveType": "site/sections/Product/ProductShelf.tsx",
-        "title": "Melhores Ofertas",
+        "title": "MELHORES OFERTAS",
         "products": {
           "props": {
-            "sort": "OrderByPriceASC",
+            "sort": "discount:desc",
             "term": "jeans",
-            "count": 12
+            "count": 12,
+            "fuzzy": "automatic",
+            "query": "feminino",
+            "hideUnavailableItems": true
           },
-          "__resolveType": "vtex/loaders/legacy/productList.ts"
+          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
         }
       }
     },
