@@ -82,6 +82,10 @@ export default function AvaliationForm(
           <AvaliationInput id="name" labelName="Seu nome" />
           <AvaliationTextArea id="review" labelName="Escrever avaliação" />
 
+          <span class="text-xs">
+            *Você precisa estar logado em sua conta para avaliar
+          </span>
+
           <button
             type="submit"
             class="flex items-center justify-center w-full xl:w-1/2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md mt-1 transition duration-150 ease-in-out"
