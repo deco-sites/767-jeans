@@ -2,10 +2,11 @@ import AvaliationForm from "./Form.tsx";
 
 interface Props {
   productId?: string;
+  status?: "success" | "failed";
 }
 
 export default function SubscriptionModal(
-  { productId }: Props,
+  { status, productId }: Props,
 ) {
   return (
     <>
@@ -17,7 +18,7 @@ export default function SubscriptionModal(
       <div class="modal" role="dialog">
         <div class="modal-box">
           <div class="w-full">
-            <AvaliationForm productId={productId} />
+            <AvaliationForm status={status} productId={productId} />
           </div>
         </div>
         <label class="modal-backdrop" for="aval">Close</label>

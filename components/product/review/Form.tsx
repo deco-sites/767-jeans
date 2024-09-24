@@ -1,8 +1,6 @@
-import { SectionProps } from "@deco/deco";
 import { AppContext } from "../../../apps/deco/vtex.ts";
 import { useComponent } from "../../../sections/Component.tsx";
-
-export type Status = "success" | "failed" | undefined;
+import { SectionProps } from "@deco/deco";
 
 interface InputProps {
   id: string;
@@ -11,31 +9,33 @@ interface InputProps {
 
 interface Props {
   productId?: string;
-  status?: Status;
+  status?: "success" | "failed";
 }
 
-async function action(
+export const action = async (
   props: Props,
   req: Request,
   ctx: AppContext,
-): Promise<{ status?: Status }> {
-  const user = window.STOREFRONT.USER.getUser();
+): Promise<{ status?: "success" | "failed" }> => {
+  const user = await ctx.invoke.vtex.loaders.user();
+  const productId = props.productId;
 
-  if (!user) {
+  if (!user || !user.email || !productId) {
     return {
+      ...props,
       status: "failed",
     };
   }
 
   const form = await req.formData();
-  const title = `${form.get("title") ?? ""}`;
-  const reviewerName = `${form.get("name") ?? ""}`;
-  const text = `${form.get("review") ?? ""}`;
-  const rating = `${form.get("rating") ?? ""}`;
+  const title = form.get("title")?.toString() ?? "";
+  const reviewerName = form.get("name")?.toString() ?? "";
+  const text = form.get("review")?.toString() ?? "";
+  const rating = form.get("rating")?.toString();
 
   const review = await ctx.invoke.vtex.actions.review.submit({
     data: {
-      productId: props.productId || "",
+      productId,
       title,
       rating: Number(rating) || 5,
       reviewerName,
@@ -52,19 +52,22 @@ async function action(
   }
 
   return {
+    ...props,
     status: "success",
   };
-}
+};
 
 export default function AvaliationForm(
-  { productId, status }: Props & SectionProps<typeof action>,
+  props: Props & SectionProps<typeof action>,
 ) {
+  const { status } = props;
+
   return (
     <form
       hx-sync="this:replace"
       hx-swap="outerHTML"
       hx-target="this"
-      hx-post={useComponent(import.meta.url, { productId, status: "success" })}
+      hx-post={useComponent(import.meta.url, props)}
       class="w-full"
     >
       {!status && (
@@ -99,7 +102,10 @@ export default function AvaliationForm(
       )}
 
       {status === "failed" && (
-        <span>Algo deu errado. Por favor, tente novamente.</span>
+        <span>
+          Algo deu errado. Certifique-se de estar logado, de preencher todas as
+          informações corretamente e tentar novamente.
+        </span>
       )}
     </form>
   );
@@ -133,7 +139,7 @@ function AvaliationRating({ id, labelName }: InputProps) {
             value={idx + 1}
             checked={idx === 5}
             type="radio"
-            name="rating"
+            name={id}
             class="mask mask-star-2 bg-orange-400"
           />
         ))}
