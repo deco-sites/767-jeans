@@ -25,12 +25,22 @@
       "section": {
         "__resolveType": "site/sections/Product/ProductShelf.tsx",
         "products": {
-          "__resolveType": "vtex/loaders/legacy/relatedProductsLoader.ts",
-          "crossSelling": "whoboughtalsobought",
-          "slug": {
-            "__resolveType": "website/functions/requestToParam.ts",
-            "param": "slug"
-          }
+          "__resolveType": "commerce/loaders/product/extensions/list.ts",
+          "data": {
+            "__resolveType": "vtex/loaders/legacy/relatedProductsLoader.ts",
+            "crossSelling": "whoboughtalsobought",
+            "slug": {
+              "__resolveType": "website/functions/requestToParam.ts",
+              "param": "slug"
+            },
+            "hideUnavailableItems": true
+          },
+          "extensions": [
+            {
+              "__resolveType": "vtex/loaders/product/extensions/list.ts",
+              "reviews": true
+            }
+          ]
         },
         "title": "PRODUTOS SIMILARES"
       }
@@ -40,12 +50,22 @@
       "section": {
         "__resolveType": "site/sections/Product/ProductShelf.tsx",
         "products": {
-          "__resolveType": "vtex/loaders/legacy/relatedProductsLoader.ts",
-          "crossSelling": "showtogether",
-          "slug": {
-            "__resolveType": "website/functions/requestToParam.ts",
-            "param": "slug"
-          }
+          "__resolveType": "commerce/loaders/product/extensions/list.ts",
+          "data": {
+            "__resolveType": "vtex/loaders/legacy/relatedProductsLoader.ts",
+            "crossSelling": "showtogether",
+            "slug": {
+              "__resolveType": "website/functions/requestToParam.ts",
+              "param": "slug"
+            },
+            "hideUnavailableItems": true
+          },
+          "extensions": [
+            {
+              "__resolveType": "vtex/loaders/product/extensions/list.ts",
+              "reviews": true
+            }
+          ]
         },
         "title": "COMPRE JUNTO"
       }

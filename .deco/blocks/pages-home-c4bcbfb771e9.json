@@ -68,14 +68,23 @@
         "__resolveType": "site/sections/Product/ProductShelf.tsx",
         "title": "OS MAIS VENDIDOS",
         "products": {
-          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
-          "props": {
-            "fuzzy": "automatic",
-            "query": "feminino",
-            "count": 12,
-            "hideUnavailableItems": true,
-            "sort": "orders:desc"
-          }
+          "__resolveType": "commerce/loaders/product/extensions/list.ts",
+          "data": {
+            "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+            "props": {
+              "sort": "orders:desc",
+              "fuzzy": "automatic",
+              "query": "feminino",
+              "count": 12,
+              "hideUnavailableItems": true
+            }
+          },
+          "extensions": [
+            {
+              "__resolveType": "vtex/loaders/product/extensions/list.ts",
+              "reviews": true
+            }
+          ]
         }
       }
     },
@@ -85,15 +94,23 @@
         "__resolveType": "site/sections/Product/ProductShelf.tsx",
         "title": "NOVIDADES",
         "products": {
-          "props": {
-            "sort": "release:desc",
-            "term": "jeans",
-            "count": 12,
-            "fuzzy": "automatic",
-            "query": "feminino",
-            "hideUnavailableItems": true
+          "__resolveType": "commerce/loaders/product/extensions/list.ts",
+          "data": {
+            "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+            "props": {
+              "sort": "release:desc",
+              "fuzzy": "automatic",
+              "count": 12,
+              "query": "feminino",
+              "hideUnavailableItems": true
+            }
           },
-          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+          "extensions": [
+            {
+              "__resolveType": "vtex/loaders/product/extensions/list.ts",
+              "reviews": true
+            }
+          ]
         }
       }
     },
@@ -103,15 +120,23 @@
         "__resolveType": "site/sections/Product/ProductShelf.tsx",
         "title": "MELHORES OFERTAS",
         "products": {
-          "props": {
-            "sort": "discount:desc",
-            "term": "jeans",
-            "count": 12,
-            "fuzzy": "automatic",
-            "query": "feminino",
-            "hideUnavailableItems": true
+          "__resolveType": "commerce/loaders/product/extensions/list.ts",
+          "data": {
+            "__resolveType": "vtex/loaders/intelligentSearch/productList.ts",
+            "props": {
+              "sort": "discount:desc",
+              "fuzzy": "automatic",
+              "count": 12,
+              "hideUnavailableItems": true,
+              "collection": "feminino"
+            }
           },
-          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+          "extensions": [
+            {
+              "__resolveType": "vtex/loaders/product/extensions/list.ts",
+              "reviews": true
+            }
+          ]
         }
       }
     },
