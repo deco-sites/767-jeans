@@ -52,6 +52,11 @@ export interface Props {
    * @description time (in seconds) to start the carousel autoplay
    */
   interval?: number;
+
+  /**
+   * @description If this option is active, the image takes up half the screen
+   */
+  hasContainerClass?: boolean;
 }
 
 function BannerItem(
@@ -139,7 +144,9 @@ function BannerItem(
   );
 }
 
-function Carousel({ images = [], preload, interval }: Props) {
+function Carousel(
+  { images = [], preload, interval, hasContainerClass = false }: Props,
+) {
   const id = useId();
 
   return (
@@ -151,6 +158,7 @@ function Carousel({ images = [], preload, interval }: Props) {
         "grid-cols-[32px_1fr_32px] min-h-[510px]",
         "sm:grid-cols-[112px_1fr_112px] md:min-h-full",
         "w-full",
+        hasContainerClass && "container max-w-site",
       )}
     >
       <div class="col-span-full row-span-full">
