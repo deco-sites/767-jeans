@@ -6,6 +6,7 @@ import { formatPrice } from "../../sdk/format.ts";
 import { relative } from "../../sdk/url.ts";
 import { useOffer } from "../../sdk/useOffer.ts";
 import { useSendEvent } from "../../sdk/useSendEvent.ts";
+import Rating from "../ui/Rating.tsx";
 
 interface Props {
   product: Product;
@@ -130,8 +131,18 @@ function ProductCard({
           {title}
         </span>
 
+        {product.aggregateRating?.ratingValue != null && (
+          <div class="mt-1">
+            <Rating
+              maxRating={5}
+              rating={Math.floor(product.aggregateRating.ratingValue)}
+              size="rating-sm"
+            />
+          </div>
+        )}
+
         <div class="flex flex-col gap-1">
-          <div class="flex items-center gap-2 pt-2">
+          <div class="flex items-center gap-2 pt-1">
             {(listPrice ?? 0) > (price ?? 0) && (
               <span class="line-through font-medium text-gray-400">
                 {formatPrice(listPrice, offers?.priceCurrency)}
