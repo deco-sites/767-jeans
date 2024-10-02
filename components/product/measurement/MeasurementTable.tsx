@@ -6,7 +6,7 @@ export function MeasurementTable({ size }: { size: string }) {
   return (
     <div class="flex flex-col items-center justify-center w-full gap-4">
       <h2 class="text-xl text-center font-medium uppercase">
-        Compare as medidas com esta tabela
+        Compare as medidas com esta tabela.
       </h2>
 
       {isNumeric ? <ShortTable /> : <TShirtTable />}

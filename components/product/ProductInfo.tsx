@@ -9,8 +9,8 @@ import ShippingSimulationForm from "../shipping/Form.tsx";
 import AddToCartButton from "./AddToCartButton.tsx";
 import OutOfStock from "./OutOfStock.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
-import MeasurementModal from "./measurement/MeasurementModal.tsx";
 import PromotionTable from "./promotion/PromotionTable.tsx";
+import { MeasurementTable } from "./measurement/MeasurementTable.tsx";
 // import Rating from "../ui/Rating.tsx";
 
 interface Props {
@@ -146,12 +146,6 @@ function ProductInfo({ page }: Props) {
         </div>
       )}
 
-      {size && isAvailability && (
-        <div class="mt-4 sm:mt-6">
-          <MeasurementModal size={size} />
-        </div>
-      )}
-
       {/* Sku Selector */}
       {hasValidVariants && (
         <div className="mt-4 sm:mt-6">
@@ -176,6 +170,12 @@ function ProductInfo({ page }: Props) {
           )
           : <OutOfStock productID={productID} />}
       </div>
+
+      {size && isAvailability && (
+        <div class="mt-4 sm:mt-6">
+          <MeasurementTable size={size} />
+        </div>
+      )}
 
       {/* Shipping Simulation */}
       {isAvailability && (

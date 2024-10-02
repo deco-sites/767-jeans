@@ -96,7 +96,7 @@ function PageResult(props: SectionProps<typeof loader>) {
         data-product-list
         class={clx(
           "grid items-center",
-          "grid-cols-2 gap-2",
+          "grid-cols-2 gap-x-1 gap-y-3",
           "sm:grid-cols-3 sm:gap-10",
           "w-full",
         )}
@@ -230,7 +230,7 @@ function Result(props: SectionProps<typeof loader>) {
         {partial
           ? <PageResult {...props} />
           : (
-            <div class="container flex flex-col gap-4 sm:gap-5 w-full py-4 sm:py-5 px-5 xl:px-0 max-w-site">
+            <div class="container flex flex-col gap-4 sm:gap-5 w-full py-4 sm:py-5 px-2 xl:px-0 max-w-site">
               <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
 
               {!isDesktop && (
