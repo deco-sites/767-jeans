@@ -25,15 +25,15 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
       <div class="collapse-title px-0">{item.name}</div>
       <div class="collapse-content px-0">
         <ul>
-          <li class="pl-4">
-            <a href={item.url}>Ver todos</a>
-          </li>
-
           {item.children?.map((node) => (
             <li class="pl-4">
               <MenuItem item={node} />
             </li>
           ))}
+
+          <li class="pl-4">
+            <a href={item.url}>Ver todos</a>
+          </li>
         </ul>
       </div>
     </div>

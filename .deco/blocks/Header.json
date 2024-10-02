@@ -19,55 +19,8 @@
     "width": 129,
     "height": 45
   },
-  "navItems": [
-    {
-      "children": [
-        {
-          "image": [],
-          "children": [
-            {
-              "image": [],
-              "children": [],
-              "name": "Flare",
-              "url": "/feminino/calcas/flare"
-            },
-            {
-              "image": [],
-              "children": [],
-              "name": "Skinny",
-              "url": "/feminino/calcas/skinny"
-            },
-            {
-              "image": [],
-              "children": [],
-              "name": "Wide Leg",
-              "url": "/feminino/calcas/wide-leg"
-            }
-          ],
-          "name": "Calças",
-          "url": "/feminino/calcas"
-        },
-        {
-          "image": [],
-          "children": [],
-          "name": "Shorts",
-          "url": "/feminino/shorts"
-        }
-      ],
-      "@type": "SiteNavigationElement",
-      "url": "/feminino",
-      "name": "FEMININO",
-      "image": [
-        {
-          "image": [],
-          "video": [],
-          "url": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/39d35242-6c1c-4fcc-9efa-4d07948749fc/7cab0719-5ba4-4b13-a5ae-c77a19af04d5___84aceeb0c051699bf38396bd97c6cf07.webp",
-          "alternateName": "Banner Image",
-          "contentUrl": "/feminino",
-          "description": "Banner Image"
-        }
-      ]
-    }
-  ],
+  "navItems": {
+    "__resolveType": "navbar"
+  },
   "loading": "eager"
 }

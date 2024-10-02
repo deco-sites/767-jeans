@@ -1,50 +1,48 @@
 {
   "items": [
     {
+      "image": [
+        {
+          "image": [],
+          "video": [],
+          "url": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/39d35242-6c1c-4fcc-9efa-4d07948749fc/7cab0719-5ba4-4b13-a5ae-c77a19af04d5___84aceeb0c051699bf38396bd97c6cf07.webp",
+          "alternateName": "Banner Image",
+          "contentUrl": "/feminino",
+          "description": "Banner Image"
+        }
+      ],
       "@type": "SiteNavigationElement",
-      "url": "/deals",
-      "name": "Deals",
+      "url": "/feminino/calcas",
+      "name": "Calças",
       "children": [
         {
-          "image": [],
-          "children": [],
-          "name": "Hello"
+          "name": "Flare",
+          "url": "/feminino/calcas/flare"
         },
         {
-          "image": [],
-          "children": [],
-          "name": "World"
+          "name": "Skinny",
+          "url": "/feminino/calcas/skinny"
+        },
+        {
+          "name": "Wide Leg",
+          "url": "/feminino/calcas/wide-leg"
         }
       ]
     },
     {
       "@type": "SiteNavigationElement",
-      "url": "/valentines-day",
-      "name": "Valentine's Day",
-      "children": []
-    },
-    {
-      "@type": "SiteNavigationElement",
-      "url": "/women",
-      "name": "Women",
-      "children": []
-    },
-    {
-      "@type": "SiteNavigationElement",
-      "url": "/men",
-      "name": "Men",
-      "children": []
-    },
-    {
-      "@type": "SiteNavigationElement",
-      "url": "/clearance",
-      "name": "Clearance",
-      "children": []
-    },
-    {
-      "@type": "SiteNavigationElement",
-      "url": "/activities",
-      "name": "Activities",
+      "name": "Shorts",
+      "url": "/feminino/shorts",
+      "image": [
+        {
+          "image": [],
+          "video": [],
+          "url": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/39d35242-6c1c-4fcc-9efa-4d07948749fc/7cab0719-5ba4-4b13-a5ae-c77a19af04d5___84aceeb0c051699bf38396bd97c6cf07.webp",
+          "alternateName": "Banner Image",
+          "contentUrl": "/feminino",
+          "description": "Banner Image"
+        }
+      ],
       "children": []
     }
   ],
