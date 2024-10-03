@@ -67,11 +67,11 @@ function SliderBenefits({ benefits }: Props) {
   const id = useId();
   return (
     <div id={id}>
-      <Slider class="carousel carousel-center w-full gap-2">
+      <Slider class="carousel carousel-center w-full gap-6">
         {benefits.map((benefit, index) => (
           <Slider.Item
             index={index}
-            class="carousel-item w-32 sm:w-[28%] h-full"
+            class="carousel-item w-24 sm:w-[28%] h-full"
           >
             <Benefit {...benefit} />
           </Slider.Item>
