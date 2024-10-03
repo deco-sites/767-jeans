@@ -9,6 +9,7 @@ import * as $$$$$$$$$$$1 from "./apps/deco/blog.ts";
 import * as $$$$$$$$$$$2 from "./apps/deco/htmx.ts";
 import * as $$$$$$$$$$$3 from "./apps/deco/vtex.ts";
 import * as $$$$$$$$$$$4 from "./apps/site.ts";
+import * as $$$$$$$$0 from "./flags/multivariate.ts";
 import * as $$$0 from "./loaders/availableIcons.ts";
 import * as $$$1 from "./loaders/icons.ts";
 import * as $$$2 from "./loaders/minicart.ts";
@@ -84,6 +85,9 @@ const manifest = {
     "site/sections/Social/InstagramPosts.tsx": $$$$$$27,
     "site/sections/Social/WhatsApp.tsx": $$$$$$28,
     "site/sections/Theme/Theme.tsx": $$$$$$29,
+  },
+  "flags": {
+    "site/flags/multivariate.ts": $$$$$$$$0,
   },
   "actions": {
     "site/actions/minicart/submit.ts": $$$$$$$$$0,

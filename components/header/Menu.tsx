@@ -20,20 +20,20 @@ function MenuItem({ item }: { item: SiteNavigationElement }) {
   }
 
   return (
-    <div class="collapse collapse-plus">
-      <input type="checkbox" checked />
-      <div class="collapse-title px-0">{item.name}</div>
-      <div class="collapse-content px-0">
-        <ul>
+    <div class="collapse !outline-none">
+      <input type="checkbox" class="peer !z-10" checked />
+
+      <div class="flex items-center justify-between collapse-title py-0 pl-0 pr-4 lg:pr-14 after:flex after:items-center after:justify-center after:rounded-full after:border-2 after:border-white after:content-['+'] peer-checked:after:content-['-'] after:w-12 after:h-12 after:text-2xl h-fit">
+        <a href={item.url} class="!z-20">{item.name}</a>
+      </div>
+
+      <div class="collapse-content px-0 !py-0.5">
+        <ul class="flex flex-col gap-2">
           {item.children?.map((node) => (
             <li class="pl-4">
               <MenuItem item={node} />
             </li>
           ))}
-
-          <li class="pl-4">
-            <a href={item.url}>Ver todos</a>
-          </li>
         </ul>
       </div>
     </div>
