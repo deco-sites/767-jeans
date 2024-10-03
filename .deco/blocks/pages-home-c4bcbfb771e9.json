@@ -101,8 +101,8 @@
               "sort": "release:desc",
               "fuzzy": "automatic",
               "count": 12,
-              "query": "feminino",
-              "hideUnavailableItems": true
+              "hideUnavailableItems": true,
+              "query": "feminino"
             }
           },
           "extensions": [
@@ -127,8 +127,7 @@
               "sort": "discount:desc",
               "fuzzy": "automatic",
               "count": 12,
-              "hideUnavailableItems": true,
-              "collection": "feminino"
+              "query": "feminino"
             }
           },
           "extensions": [
