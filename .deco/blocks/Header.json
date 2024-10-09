@@ -69,6 +69,24 @@
                 }
               ],
               "children": []
+            },
+            {
+              "children": [],
+              "image": [],
+              "url": "/feminino/calcas/flare",
+              "name": "Flare"
+            },
+            {
+              "children": [],
+              "image": [],
+              "name": "Skinny",
+              "url": "/feminino/calcas/skinny"
+            },
+            {
+              "children": [],
+              "image": [],
+              "name": "Wide Leg",
+              "url": "/feminino/calcas/wide-leg"
             }
           ],
           "__resolveType": "commerce/loaders/navbar.ts"
