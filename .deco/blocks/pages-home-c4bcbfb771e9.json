@@ -30,19 +30,19 @@
       "benefits": [
         {
           "image": {
-            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/9d875780-25c5-42d2-bc4a-98d47a1b28eb/Frete.svg",
-            "description": "Truck Image"
-          },
-          "title": "Frete grátis",
-          "subtitle": "Nas compras acima de R$499"
-        },
-        {
-          "image": {
             "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/cc5bb82d-7763-4fde-b959-62e8abd99d2e/Desconto.svg",
             "description": "Offer Image"
           },
           "title": "10% Off",
           "subtitle": "Na primeira compra"
+        },
+        {
+          "image": {
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/9d875780-25c5-42d2-bc4a-98d47a1b28eb/Frete.svg",
+            "description": "Truck Image"
+          },
+          "title": "Frete grátis",
+          "subtitle": "Nas compras acima de R$499"
         },
         {
           "image": {
@@ -54,11 +54,11 @@
         },
         {
           "image": {
-            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/04500098-2a72-4aea-99cd-25e3b296b748/Cashback.svg",
-            "description": "Cashback Image"
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/9d875780-25c5-42d2-bc4a-98d47a1b28eb/Frete.svg",
+            "description": "Frete"
           },
-          "title": "Cashback",
-          "subtitle": "Receba 15% de bônus para a próxima compra"
+          "title": "FRETE FIXO R$ 7,99",
+          "subtitle": "Região Sul, Sudeste e MS"
         }
       ]
     },
