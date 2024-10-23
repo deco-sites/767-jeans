@@ -179,7 +179,7 @@ function ProductInfo({ page }: Props) {
 
       {/* Shipping Simulation */}
       {isAvailability && (
-        <div class="mt-8">
+        <div class="mt-8 hidden">
           <ShippingSimulationForm
             items={[{ id: Number(product.sku), quantity: 1, seller: seller }]}
           />
