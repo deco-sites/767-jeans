@@ -68,6 +68,12 @@ const sendBeginCheckoutEvent = () => {
   });
 };
 
+const onClickKeepBuying = () => {
+  const closeMinicart = document.querySelector("#XDrawer") as HTMLElement | null;
+
+  closeMinicart?.click();
+}
+
 export const action = async (_props: unknown, req: Request, ctx: AppContext) =>
   req.method === "PATCH"
     ? ({ cart: await ctx.invoke("site/loaders/minicart.ts") }) // error fallback
@@ -176,14 +182,14 @@ export default function Cart(
             : (
               <>
                 {/* Free Shipping Bar */}
-                {/* <div class="px-2 py-4 w-full">
+                <div class="px-2 py-4 w-full">
                   <FreeShippingProgressBar
                     total={total}
                     locale={locale}
                     currency={currency}
                     target={freeShippingTarget}
                   />
-                </div> */}
+                </div>
 
                 {/* Cart Items */}
                 <ul
@@ -238,8 +244,16 @@ export default function Cart(
                       Taxas e frete serão calculados na finalização da compra
                     </span>
                   </div>
-
                   <div class="p-4">
+                    <a
+                      class="btn bg-gray-400 hover:bg-gray-500 border-gray-400 mb-4 w-full no-animation"
+                      hx-on:click={useScript(onClickKeepBuying)}
+                    >
+                      <span class="[.htmx-request_&]:hidden uppercase font-medium text-white">
+                        Continuar comprando
+                      </span>
+                      <span class="[.htmx-request_&]:inline hidden loading loading-spinner" />
+                    </a>
                     <a
                       class="btn btn-primary w-full no-animation"
                       href={checkoutHref}
@@ -250,7 +264,8 @@ export default function Cart(
                       </span>
                       <span class="[.htmx-request_&]:inline hidden loading loading-spinner" />
                     </a>
-                  </div>
+                  </div>,
+
                 </footer>
               </>
             )}
