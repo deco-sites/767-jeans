@@ -1,7 +1,6 @@
 import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
-import { LoadingFallbackProps } from "deco/mod.ts";
 import Alert from "../../components/header/Alert.tsx";
 import Bag from "../../components/header/Bag.tsx";
 import Menu from "../../components/header/Menu.tsx";
@@ -22,6 +21,7 @@ import {
   SIDEMENU_DRAWER_ID,
 } from "../../constants.ts";
 import { useDevice } from "@deco/deco/hooks";
+import { type LoadingFallbackProps } from "@deco/deco";
 export interface Logo {
   src: ImageWidget;
   alt: string;
@@ -47,9 +47,7 @@ export interface SectionProps {
    * @hide true */
   loading?: "eager" | "lazy";
 }
-
 type Props = Omit<SectionProps, "alert">;
-
 const Desktop = ({ navItems, logo, searchbar, loading }: Props) => (
   <div class="flex flex-col gap-4 pt-5 px-5 xl:px-0 container max-w-site">
     <div class="grid grid-cols-3 place-items-center">
@@ -88,7 +86,6 @@ const Desktop = ({ navItems, logo, searchbar, loading }: Props) => (
     </div>
   </div>
 );
-
 const Mobile = ({ logo, searchbar, navItems, loading }: Props) => (
   <>
     <Drawer
@@ -172,7 +169,6 @@ const Mobile = ({ logo, searchbar, navItems, loading }: Props) => (
     </div>
   </>
 );
-
 function Header({
   alerts = [],
   logo = {
@@ -185,7 +181,6 @@ function Header({
   ...props
 }: Props) {
   const device = useDevice();
-
   return (
     <header
       style={{
@@ -203,10 +198,8 @@ function Header({
     </header>
   );
 }
-
 export const LoadingFallback = (props: LoadingFallbackProps<Props>) => (
   // deno-lint-ignore no-explicit-any
   <Header {...props as any} loading="lazy" />
 );
-
 export default Header;

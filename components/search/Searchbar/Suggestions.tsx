@@ -1,5 +1,4 @@
 import { Suggestion } from "apps/commerce/types.ts";
-import { Resolved } from "deco/mod.ts";
 import type { AppContext } from "../../../apps/site.ts";
 import { clx } from "../../../sdk/clx.ts";
 import { useOffer } from "../../../sdk/useOffer.ts";
@@ -9,7 +8,7 @@ import { ComponentProps } from "../../../sections/Component.tsx";
 import Image from "apps/website/components/Image.tsx";
 import { NAME } from "./Form.tsx";
 import { SEARCHBAR_POPUP_ID } from "../../../constants.ts";
-
+import { type Resolved } from "@deco/deco";
 export interface Props {
   /**
    * @title Suggestions Integration
@@ -17,43 +16,33 @@ export interface Props {
    */
   loader: Resolved<Suggestion | null>;
 }
-
 export const action = async (props: Props, req: Request, ctx: AppContext) => {
   const { loader: { __resolveType, ...loaderProps } } = props;
-
   const form = await req.formData();
   const query = `${form.get(NAME ?? "q")}`;
-
   // @ts-expect-error This is a dynamic resolved loader
   const suggestion = await ctx.invoke(__resolveType, {
     ...loaderProps,
     query,
   }) as Suggestion | null;
-
   return { suggestion };
 };
-
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   const { loader: { __resolveType, ...loaderProps } } = props;
-
   const query = new URL(req.url).searchParams.get(NAME ?? "q");
-
   // @ts-expect-error This is a dynamic resolved loader
   const suggestion = await ctx.invoke(__resolveType, {
     ...loaderProps,
     query,
   }) as Suggestion | null;
-
   return { suggestion };
 };
-
 function Suggestions(
   { suggestion }: ComponentProps<typeof loader, typeof action>,
 ) {
   const { products = [], searches = [] } = suggestion ?? {};
   const hasProducts = Boolean(products?.length ?? 0);
   const hasTerms = Boolean(searches.length);
-
   return (
     <div
       id={SEARCHBAR_POPUP_ID}
@@ -64,11 +53,7 @@ function Suggestions(
     >
       <div class="grid grid-cols-1">
         <div class="flex flex-col pt-6 gap-2">
-          <span
-            class="font-medium text-xl"
-            role="heading"
-            aria-level={3}
-          >
+          <span class="font-medium text-xl" role="heading" aria-level={3}>
             Produtos sugeridos
           </span>
 
@@ -81,10 +66,8 @@ function Suggestions(
                     const title = isVariantOf?.name ?? name;
                     const { listPrice, price, installments } = useOffer(offers);
                     const relativeUrl = relative(url);
-
                     const WIDTH = 100;
                     const HEIGHT = 100;
-
                     return (
                       <li class="flex justify-between gap-2 w-full">
                         <a
@@ -148,5 +131,4 @@ function Suggestions(
     </div>
   );
 }
-
 export default Suggestions;
