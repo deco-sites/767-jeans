@@ -1,0 +1,56 @@
+{
+  "name": "Novidade",
+  "path": "/novidade",
+  "sections": [
+    {
+      "__resolveType": "commerce/sections/Seo/SeoPLPV2.tsx",
+      "jsonLD": {
+        "__resolveType": "PLP - Extension"
+      }
+    },
+    {
+      "__resolveType": "Header"
+    },
+    {
+      "__resolveType": "website/sections/Rendering/Lazy.tsx",
+      "section": {
+        "__resolveType": "site/sections/Product/SearchResult.tsx",
+        "page": {
+          "__resolveType": "commerce/loaders/product/extensions/listingPage.ts",
+          "data": {
+            "__resolveType": "vtex/loaders/intelligentSearch/productListingPage.ts",
+            "sort": "discount:desc",
+            "fuzzy": "automatic",
+            "selectedFacets": [
+              {
+                "key": "productClusterIds",
+                "value": "159"
+              }
+            ],
+            "count": 12,
+            "hideUnavailableItems": true
+          },
+          "extensions": [
+            {
+              "__resolveType": "vtex/loaders/product/extensions/listingPage.ts",
+              "reviews": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "__resolveType": "website/sections/Rendering/Lazy.tsx",
+      "section": {
+        "__resolveType": "Newsletter"
+      }
+    },
+    {
+      "__resolveType": "Footer"
+    }
+  ],
+  "seo": {
+    "__resolveType": "website/sections/Seo/SeoV2.tsx"
+  },
+  "__resolveType": "website/pages/Page.tsx"
+}
