@@ -87,6 +87,18 @@
               "image": [],
               "name": "Wide Leg",
               "url": "/feminino/calcas/wide-leg"
+            },
+            {
+              "children": [],
+              "image": [],
+              "name": "Camisas",
+              "url": "/feminino/camisas"
+            },
+            {
+              "children": [],
+              "image": [],
+              "name": "Shorts",
+              "url": "/feminino/shorts"
             }
           ],
           "__resolveType": "commerce/loaders/navbar.ts"
@@ -133,6 +145,12 @@
                   "children": [],
                   "name": "Shorts",
                   "url": "/feminino/shorts"
+                },
+                {
+                  "image": [],
+                  "children": [],
+                  "name": "Camisas",
+                  "url": "/feminino/camisas"
                 }
               ]
             }

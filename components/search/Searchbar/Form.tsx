@@ -9,7 +9,6 @@
  * no JavaScript is shipped to the browser!
  */
 import { Suggestion } from "apps/commerce/types.ts";
-import { Resolved } from "deco/mod.ts";
 import {
   SEARCHBAR_INPUT_FORM_ID,
   SEARCHBAR_POPUP_ID,
@@ -20,6 +19,7 @@ import Icon from "../../ui/Icon.tsx";
 import { Props as SuggestionProps } from "./Suggestions.tsx";
 import { useScript } from "@deco/deco/hooks";
 import { asResolved } from "@deco/deco";
+import { type Resolved } from "@deco/deco";
 // When user clicks on the search button, navigate it to
 export const ACTION = "/s";
 // Querystring param used when navigating the user
@@ -34,11 +34,9 @@ export interface SearchbarProps {
   /** @description Loader to run when suggesting new elements */
   loader: Resolved<Suggestion | null>;
 }
-
 const script = (formId: string, name: string, popupId: string) => {
   const form = document.getElementById(formId) as HTMLFormElement | null;
   const input = form?.elements.namedItem(name) as HTMLInputElement | null;
-
   form?.addEventListener("submit", () => {
     const search_term = input?.value;
     if (search_term) {
@@ -48,7 +46,6 @@ const script = (formId: string, name: string, popupId: string) => {
       });
     }
   });
-
   // Handle clicking outside of Suggestions
   addEventListener("click", (e: MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -61,15 +58,12 @@ const script = (formId: string, name: string, popupId: string) => {
       suggestions.classList.add("hidden");
     }
   });
-
   input?.addEventListener("click", () => {
     if (input?.value.trim() !== "") {
       const suggestions = document.getElementById(popupId);
-
       suggestions?.classList.remove("hidden");
     }
   });
-
   // Keyboard event listeners
   addEventListener("keydown", (e: KeyboardEvent) => {
     const isK = e.key === "k" || e.key === "K" || e.keyCode === 75;
@@ -83,14 +77,11 @@ const script = (formId: string, name: string, popupId: string) => {
     }
   });
 };
-
 const Suggestions = import.meta.resolve("./Suggestions.tsx");
-
 export default function Searchbar(
   { placeholder = "What are you looking for?", loader }: SearchbarProps,
 ) {
   const slot = useId();
-
   return (
     <div
       class="grid w-full px-4 xl:px-0 relative"

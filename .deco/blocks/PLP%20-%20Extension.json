@@ -6,7 +6,7 @@
   "extensions": [
     {
       "__resolveType": "vtex/loaders/product/extensions/listingPage.ts",
-      "reviews": true
+      "reviews": false
     }
   ]
 }

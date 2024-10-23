@@ -4,9 +4,8 @@ import Section, {
   type Props as SectionHeaderProps,
 } from "../../components/ui/Section.tsx";
 import Slider from "../../components/ui/Slider.tsx";
-import { LoadingFallbackProps } from "deco/mod.ts";
 import { useDevice } from "@deco/deco/hooks";
-
+import { type LoadingFallbackProps } from "@deco/deco";
 /** @titleBy label */
 export interface Item {
   image: ImageWidget;
@@ -47,10 +46,7 @@ function CategoryGrid({ title, cta, items }: Props) {
         : (
           <Slider class="carousel carousel-center sm:carousel-end gap-5 w-full">
             {items.map((i, index) => (
-              <Slider.Item
-                index={index}
-                class="carousel-item"
-              >
+              <Slider.Item index={index} class="carousel-item">
                 <Card {...i} />
               </Slider.Item>
             ))}

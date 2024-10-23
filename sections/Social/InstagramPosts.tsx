@@ -1,11 +1,10 @@
 import Image from "apps/website/components/Image.tsx";
-import type { LoadingFallbackProps } from "deco/mod.ts";
 import Section, {
   type Props as SectionHeaderProps,
 } from "../../components/ui/Section.tsx";
 import Slider from "../../components/ui/Slider.tsx";
 import { type SectionProps } from "@deco/deco";
-
+import { type LoadingFallbackProps } from "@deco/deco";
 export interface Data {
   id: string;
   permalink: string;
@@ -104,10 +103,7 @@ function InstagramPosts({
 
       <Slider class="carousel carousel-center sm:carousel-end gap-5 sm:gap-10 w-full">
         {posts.map((item, index) => (
-          <Slider.Item
-            index={index}
-            class="carousel-item"
-          >
+          <Slider.Item index={index} class="carousel-item">
             <a href={item.permalink} target="_blank">
               {item.media_type === "IMAGE"
                 ? (
