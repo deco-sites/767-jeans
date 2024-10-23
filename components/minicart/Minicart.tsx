@@ -256,7 +256,7 @@ export default function Cart(
                   </div>
                   <div class="p-4">
                     <a
-                      class="btn bg-gray-400 hover:bg-gray-500 border-gray-400 mb-4 w-full no-animation"
+                      class="btn bg-black hover:bg-slate-800 border-black mb-3 w-full no-animation"
                       hx-on:click={useScript(onClickKeepBuying)}
                     >
                       <span class="[.htmx-request_&]:hidden uppercase font-medium text-white">
