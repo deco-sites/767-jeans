@@ -17,6 +17,9 @@ const onClick = () => {
   const { item, platformProps } = JSON.parse(
     decodeURIComponent(container.getAttribute("data-cart-item")!),
   );
+  const clickMinicart = document.querySelector(".indicator") as HTMLElement | null;
+
+  clickMinicart?.click();
   window.STOREFRONT.CART.addToCart(item, platformProps);
 };
 const onChange = () => {

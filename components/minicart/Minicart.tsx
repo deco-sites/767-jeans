@@ -176,14 +176,14 @@ export default function Cart(
             : (
               <>
                 {/* Free Shipping Bar */}
-                <div class="px-2 py-4 w-full">
+                {/* <div class="px-2 py-4 w-full">
                   <FreeShippingProgressBar
                     total={total}
                     locale={locale}
                     currency={currency}
                     target={freeShippingTarget}
                   />
-                </div>
+                </div> */}
 
                 {/* Cart Items */}
                 <ul
