@@ -99,6 +99,16 @@
               "image": [],
               "name": "Shorts",
               "url": "/feminino/shorts"
+            },
+            {
+              "children": [],
+              "image": [],
+              "url": "/feminino/calcas/pantalona",
+              "name": "Pantalona"
+            },
+            {
+              "children": [],
+              "image": []
             }
           ],
           "__resolveType": "commerce/loaders/navbar.ts"
@@ -135,6 +145,12 @@
                       "children": [],
                       "name": "Wide Leg",
                       "url": "/feminino/calcas/wide-leg"
+                    },
+                    {
+                      "image": [],
+                      "children": [],
+                      "url": "/feminino/calcas/pantalona",
+                      "name": "Pantalona"
                     }
                   ],
                   "name": "Calças",
@@ -151,6 +167,10 @@
                   "children": [],
                   "name": "Camisas",
                   "url": "/feminino/camisas"
+                },
+                {
+                  "image": [],
+                  "children": []
                 }
               ]
             }
