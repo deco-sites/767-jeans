@@ -27,7 +27,7 @@ function QuantitySelector(
         -
       </button>
       <div
-        data-tip={`Quantity must be between ${props.min} and ${props.max}`}
+        data-tip={`A quantidade deve ser entre ${props.min} e ${props.max}`}
         class={clx(
           "flex-grow join-item",
           "flex justify-center items-center",

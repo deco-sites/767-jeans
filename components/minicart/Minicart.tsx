@@ -69,10 +69,20 @@ const sendBeginCheckoutEvent = () => {
 };
 
 const onClickKeepBuying = () => {
-  const closeMinicart = document.querySelector("#XDrawer") as HTMLElement | null;
+  const breadcrumbItems = document.querySelectorAll(".breadcrumbs ul li");
 
-  closeMinicart?.click();
-}
+  if (breadcrumbItems.length > 2) {
+    const anchor = breadcrumbItems[1].querySelector("a") as HTMLAnchorElement;
+    if (anchor && anchor.href) {
+      window.location.href = anchor.href;
+    }
+  } else if (breadcrumbItems.length >= 1) {
+    const anchor = breadcrumbItems[0].querySelector("a") as HTMLAnchorElement;
+    if (anchor && anchor.href) {
+      window.location.href = anchor.href;
+    }
+  }
+};
 
 export const action = async (_props: unknown, req: Request, ctx: AppContext) =>
   req.method === "PATCH"
@@ -265,7 +275,6 @@ export default function Cart(
                       <span class="[.htmx-request_&]:inline hidden loading loading-spinner" />
                     </a>
                   </div>,
-
                 </footer>
               </>
             )}
