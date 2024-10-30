@@ -9,7 +9,9 @@
       "images": [
         {
           "desktop": {
-            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/5bddacbd-c347-4f48-a12f-7c4edaa1691e/desktop.png"
+            "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/5bddacbd-c347-4f48-a12f-7c4edaa1691e/desktop.png",
+            "width": 3000,
+            "height": 1060
           },
           "mobile": {
             "source": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/767-jeans/d602af36-d7d6-481d-8cc2-27cba72c6acd/mobile.png"
