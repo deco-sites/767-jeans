@@ -5888,6 +5888,14 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(13 23 23 / var(--tw-bg-opacity));
 }
 
+.peer:checked ~ .peer-checked\:flex {
+  display: flex;
+}
+
+.peer:checked ~ .peer-checked\:hidden {
+  display: none;
+}
+
 .peer:checked ~ .peer-checked\:after\:content-\[\'-\'\]::after {
   --tw-content: '-';
   content: var(--tw-content);

@@ -14,29 +14,14 @@ const onClick = () => {
   event?.stopPropagation();
   const button = event?.currentTarget as HTMLButtonElement | null;
   const container = button!.closest<HTMLDivElement>("div[data-cart-item]")!;
-  const quantityInput = container.querySelector(
-    'input[type="number"]',
-  ) as HTMLInputElement;
-  const quantity = Number(quantityInput?.value) || 1;
-
   const { item, platformProps } = JSON.parse(
     decodeURIComponent(container.getAttribute("data-cart-item")!),
   );
-
-  if (platformProps.orderItems) {
-    platformProps.orderItems[0].quantity = quantity;
-  } else if (platformProps.quantity !== undefined) {
-    platformProps.quantity = quantity;
-  }
-
-  const clickMinicart = document.querySelector(".indicator") as
-    | HTMLElement
-    | null;
+  const clickMinicart = document.querySelector(".indicator") as HTMLElement | null;
 
   clickMinicart?.click();
   window.STOREFRONT.CART.addToCart(item, platformProps);
 };
-
 const onChange = () => {
   const input = event!.currentTarget as HTMLInputElement;
   const productID = input!
@@ -48,7 +33,6 @@ const onChange = () => {
   }
   window.STOREFRONT.CART.setQuantity(productID, quantity);
 };
-
 // Copy cart form values into AddToCartButton
 const onLoad = (id: string) => {
   window.STOREFRONT.CART.subscribe((sdk) => {
@@ -129,7 +113,7 @@ function AddToCartButton(props: Props) {
   return (
     <div
       id={id}
-      class="flex flex-col gap-4"
+      class="flex"
       data-item-id={product.productID}
       data-cart-item={encodeURIComponent(
         JSON.stringify({ item, platformProps }),
@@ -137,22 +121,23 @@ function AddToCartButton(props: Props) {
     >
       <input type="checkbox" class="hidden peer" />
 
-      {/* Quantity Input */}
-      <div class="flex-grow">
-        <QuantitySelector
-          min={1}
-          max={100}
-          hx-on:change={useScript(onChange)}
-        />
-      </div>
-
       <button
         disabled
-        class={clx("flex-grow ", _class?.toString())}
+        class={clx("flex-grow peer-checked:hidden", _class?.toString())}
         hx-on:click={useScript(onClick)}
       >
         COMPRAR
       </button>
+
+      {/* Quantity Input */}
+      <div class="flex-grow hidden peer-checked:flex">
+        <QuantitySelector
+          disabled
+          min={0}
+          max={100}
+          hx-on:change={useScript(onChange)}
+        />
+      </div>
 
       <script
         type="module"
