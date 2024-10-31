@@ -12,15 +12,12 @@
       "__resolveType": "Header"
     },
     {
-      "__resolveType": "website/sections/Rendering/Lazy.tsx",
-      "section": {
-        "__resolveType": "site/sections/Product/SearchResult.tsx",
-        "page": {
-          "__resolveType": "PLP - Extension"
-        },
-        "layout": {
-          "pagination": "show-more"
-        }
+      "__resolveType": "site/sections/Product/SearchResult.tsx",
+      "page": {
+        "__resolveType": "PLP - Extension"
+      },
+      "layout": {
+        "pagination": "show-more"
       }
     },
     {
