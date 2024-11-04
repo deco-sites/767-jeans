@@ -10,7 +10,6 @@ export const useProductByUrl = (variants: ProductLeaf[], url: string): ProductLe
 
 export const useVariantAvailability = (offers: any): boolean => {
   const { availability } = useOffer(offers);
-  console.log(availability, "ta on ou off?")
   return availability === AVAILABILITY_IN_STOCK;
 };
 

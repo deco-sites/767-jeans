@@ -51,12 +51,12 @@ const onLoad = (formID: string) => {
         return;
       }
       // Disable addToCart button interactivity
-      document.querySelectorAll("div[data-cart-item]").forEach((container) => {
-        container?.querySelectorAll("button")
-          .forEach((node) => node.disabled = true);
-        container?.querySelectorAll("input")
-          .forEach((node) => node.disabled = true);
-      });
+      // document.querySelectorAll("div[data-cart-item]").forEach((container) => {
+      //   container?.querySelectorAll("button")
+      //     .forEach((node) => node.disabled = true);
+      //   container?.querySelectorAll("input")
+      //     .forEach((node) => node.disabled = true);
+      // });
     },
   );
 };
