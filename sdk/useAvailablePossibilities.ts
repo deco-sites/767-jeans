@@ -2,6 +2,18 @@ import { ProductLeaf } from "apps/commerce/types.ts";
 import { relative } from "./url.ts";
 import { useOffer } from "./useOffer.ts";
 
+export const AVAILABILITY_IN_STOCK = "https://schema.org/InStock";
+
+export const useProductByUrl = (variants: ProductLeaf[], url: string): ProductLeaf | undefined => {
+  return variants.find((item) => relative(item.url) === url);
+};
+
+export const useVariantAvailability = (offers: any): boolean => {
+  const { availability } = useOffer(offers);
+  console.log(availability, "ta on ou off?")
+  return availability === AVAILABILITY_IN_STOCK;
+};
+
 export const useAvailablePossibilities = ({
   productUrl,
   variants = [],
@@ -9,9 +21,10 @@ export const useAvailablePossibilities = ({
   productUrl: string;
   variants: ProductLeaf[];
 }): boolean => {
-  const product = variants.find((item) => relative(item.url) === productUrl);
+  const product = useProductByUrl(variants, productUrl);
+  if (!product || !product.offers) {
+    return false;
+  }
 
-  const { availability } = useOffer(product?.offers);
-
-  return availability === "https://schema.org/InStock";
+  return useVariantAvailability(product.offers);
 };
