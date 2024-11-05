@@ -12,16 +12,32 @@ export interface Props extends JSX.HTMLAttributes<HTMLButtonElement> {
 }
 const onClick = () => {
   event?.stopPropagation();
+  const clickMinicart = document.querySelector(".indicator") as HTMLElement | null;
   const button = event?.currentTarget as HTMLButtonElement | null;
   const container = button!.closest<HTMLDivElement>("div[data-cart-item]")!;
+  const checkbox = container?.querySelector<HTMLInputElement>(
+    'input[type="checkbox"]',
+  );
   const { item, platformProps } = JSON.parse(
     decodeURIComponent(container.getAttribute("data-cart-item")!),
   );
-  const clickMinicart = document.querySelector(".indicator") as HTMLElement | null;
+
+  const productID = container.getAttribute("data-item-id")!;
+  let currentQuantity = window.STOREFRONT.CART.getQuantity(productID) || 0;
+
+  if (checkbox) {
+    if (checkbox?.checked) {
+      currentQuantity += 1;
+      window.STOREFRONT.CART.setQuantity(productID, currentQuantity);
+    } else {
+      checkbox.checked = true;
+      window.STOREFRONT.CART.addToCart(item, platformProps);
+    }
+  }
 
   clickMinicart?.click();
-  window.STOREFRONT.CART.addToCart(item, platformProps);
 };
+
 const onChange = () => {
   const input = event!.currentTarget as HTMLInputElement;
   const productID = input!
@@ -33,6 +49,7 @@ const onChange = () => {
   }
   window.STOREFRONT.CART.setQuantity(productID, quantity);
 };
+
 // Copy cart form values into AddToCartButton
 const onLoad = (id: string) => {
   window.STOREFRONT.CART.subscribe((sdk) => {
@@ -122,15 +139,14 @@ function AddToCartButton(props: Props) {
       <input type="checkbox" class="hidden peer" />
 
       <button
-        disabled
-        class={clx("flex-grow peer-checked:hidden", _class?.toString())}
+        class={clx("flex-grow peer-checked:flex", _class?.toString())}
         hx-on:click={useScript(onClick)}
       >
         COMPRAR
       </button>
 
       {/* Quantity Input */}
-      <div class="flex-grow hidden peer-checked:flex">
+      <div class="flex-grow hidden peer-checked:hidden">
         <QuantitySelector
           disabled
           min={0}

@@ -51,12 +51,12 @@ const onLoad = (formID: string) => {
         return;
       }
       // Disable addToCart button interactivity
-      document.querySelectorAll("div[data-cart-item]").forEach((container) => {
-        container?.querySelectorAll("button")
-          .forEach((node) => node.disabled = true);
-        container?.querySelectorAll("input")
-          .forEach((node) => node.disabled = true);
-      });
+      // document.querySelectorAll("div[data-cart-item]").forEach((container) => {
+      //   container?.querySelectorAll("button")
+      //     .forEach((node) => node.disabled = true);
+      //   container?.querySelectorAll("input")
+      //     .forEach((node) => node.disabled = true);
+      // });
     },
   );
 };
@@ -71,8 +71,8 @@ const sendBeginCheckoutEvent = () => {
 const onClickKeepBuying = () => {
   const breadcrumbItems = document.querySelectorAll(".breadcrumbs ul li");
 
-  if (breadcrumbItems.length > 2) {
-    const anchor = breadcrumbItems[1].querySelector("a") as HTMLAnchorElement;
+  if (breadcrumbItems.length >= 2) {
+    const anchor = breadcrumbItems[2].querySelector("a") as HTMLAnchorElement;
     if (anchor && anchor.href) {
       window.location.href = anchor.href;
     }
