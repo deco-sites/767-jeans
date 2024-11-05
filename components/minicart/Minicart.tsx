@@ -71,8 +71,8 @@ const sendBeginCheckoutEvent = () => {
 const onClickKeepBuying = () => {
   const breadcrumbItems = document.querySelectorAll(".breadcrumbs ul li");
 
-  if (breadcrumbItems.length > 2) {
-    const anchor = breadcrumbItems[1].querySelector("a") as HTMLAnchorElement;
+  if (breadcrumbItems.length >= 2) {
+    const anchor = breadcrumbItems[2].querySelector("a") as HTMLAnchorElement;
     if (anchor && anchor.href) {
       window.location.href = anchor.href;
     }
