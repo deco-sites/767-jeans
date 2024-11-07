@@ -5,7 +5,7 @@ import { useComponent } from "../../sections/Component.tsx";
 export interface Props {
   items: SKU[];
 }
-
+const Shipping = import.meta.resolve("./Suggestions.tsx");
 export default function Form({ items }: Props) {
   const slot = useId();
 
@@ -22,7 +22,7 @@ export default function Form({ items }: Props) {
         hx-target={`#${slot}`}
         hx-swap="innerHTML"
         hx-sync="this:replace"
-        hx-post={useComponent(import.meta.resolve("./Resultss.tsx"), {
+        hx-post={useComponent(Shipping, {
           items,
         })}
       >
