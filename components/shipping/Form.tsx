@@ -5,7 +5,7 @@ import { useComponent } from "../../sections/Component.tsx";
 export interface Props {
   items: SKU[];
 }
-const Shipping = import.meta.resolve("./Suggestions.tsx");
+const Shipping = import.meta.resolve("./Resultss.tsx");
 export default function Form({ items }: Props) {
   const slot = useId();
 
